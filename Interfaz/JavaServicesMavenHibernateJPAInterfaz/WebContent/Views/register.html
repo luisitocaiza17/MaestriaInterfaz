@@ -1,0 +1,244 @@
+<html>
+
+<head>
+	<title>SSAM ESPE</title>
+	<!-- start: META -->
+    <meta charset="utf-8" />
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content="IE=edge,IE=9,IE=8,chrome=1" /><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+	<!-- end: META -->
+	<style>
+		#alignCenterTop {
+			height: 90%; 
+			width:100%;
+			display:flex;
+			align-items: center;
+			justify-content: center;
+			vertical-align:middle;
+		}		
+	</style>
+</head>
+
+<body>
+	<div id="carga">
+		<div class="alignCenterTop" id="alignCenterTop">
+			<h3>SSAM
+				<small class="text-muted">Sistema de Sugerencias de Arquitectura de Micro-servicios</small>
+			</h3>
+		</div>
+	</div>
+	<div id="principal" style="display: none;">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">SSAM</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+				<ul class="navbar-nav">
+					<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Información
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+						<li><a class="dropdown-item btnInfProyecto" href="#" onclick="javascript:llamarVentanaInformacionGeneral();">El proyecto</a></li>
+						<li><a class="dropdown-item" href="#" onclick="javascript:llamarVentanaEquipoGeneral();" >Nuestro Equipo</a></li>
+						<li><a class="dropdown-item" href="#">Contactanos</a></li>
+					</ul>
+					</li>
+				</ul>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container" id="parteInicial">
+			<div class="row">
+				<div class="col-3" class="fondoGris"></div>
+				<div class="col-6">
+				<br/>
+				<br/>
+				<h3 style="text-align: center;">Sistema de Sugerencias de Arquitectura de Micro-servicios (SSAM)</h3>
+				<br/>
+				<p>El sistema validará que tan recomendable es usar la arquitectura de micro-servicios
+					en base al analisís de factores técnicos evaluados a travez de un conjunto de partePreguntas
+					que necesitará responder a continuación.				 
+				</p>
+				<br/>
+				<p>
+					Para empezar coloque los siguientes datos.
+				</p>
+				<br/>
+				<div class="row">
+					<div class="col-2" ></div>
+					<div class="col-8">
+						<div class="mb-3">
+						<label for="in_nombre_proyecto" class="form-label">Nombre del proyecto</label>
+						<input type="text" class="form-control" id="in_nombre_proyecto" >
+						
+					</div>
+					<div class="mb-3">
+						<label for="in_nombre_usuario" class="form-label">Nombre de Usuario</label>
+						<input type="text" class="form-control" id="in_nombre_usuario">
+					</div>
+					<div class="mb-3">
+						<label for="in_nombre_usuario" class="form-label">Correo Electrónico</label>
+						<input type="email" class="form-control" id="in_email">
+					</div>
+					<div style="text-align:center">
+						<button type="button" id="btn_Ingresar" class="btn btn-primary">Comenzar</button>
+					</div>
+
+					</div>
+					<div class="col-2" ></div>
+				</div>
+				</div>
+				<div class="col-3" class="fondoGris"></div>
+			</div>
+		</div>
+		<div class="container" id="partePreguntas" style="display: none;">
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-8">
+					<br/>
+					<br/>
+					<h4 align="center" id="nombreProyecto"></h4>
+					<h5 align="center" id="nombreUsuario"></h5>
+					<p align="center"> A continuación se presentarán un conjunto de preguntas
+						que ayudará a determinar el grado de sugerencia de la aplicación sobre el uso de la 
+						arquitectura de micro-servicios.
+					</p>
+					<br/>
+					<div align="center" id="idContador" style="text-align:center"></div>
+					<div align="center" id="profileCompleteness" style="text-align:center"></div>
+					<br/>
+					&nbsp;
+					<div id="preguntas" class="alert alert-primary" role="alert"></div>
+					<div style="text-align:right">
+						<button type="button" id="btn_Siguiente" class="btn btn-primary">Continuar</button>
+					</div>
+					<div style="text-align:right">
+						<button type="button" id="btn_Finalizar" class="btn btn-primary">Finalizar</button>
+					</div>
+				</div>
+				<div class="col-2"></div>
+			</div>
+		</div>
+		<div class="container" id="parteAnalisis" style="display: none;">
+			<div class="row">
+				<div class="col-2">					
+				</div>
+				<div class="col-8">
+					<br/>
+					<div id="tituloFinal"></div>
+					<br/>
+					<button class='k-button' id="descargaPrincipal">Descargar como PDF</button>
+					<div id="chart-mmHg"></div>
+				</div>
+				<div class="col-2">
+					
+				</div>
+			</div>
+			<br/>
+			<br/>
+			<div class="row">
+				<div class="col-6">
+					<button class='k-button' id="descargaSegunda">Descargar como PDF</button>
+					<div id="chart"></div>
+				</div>
+				<div class="col-6">
+					<button class='k-button' id="descargaTercera">Descargar como PDF</button>
+					<div id="chartBarras"></div>				
+				</div>
+				
+			</div>
+			<br/>
+			<br/>
+		</div>
+		<br/>
+		<br/>
+		<!--Ventana de informacion-->
+		 <div id="elProyecto_window" style="display:none;">        
+			<p>A continuación encontrará información sobre el proyecto:</p>
+			<br />
+			<br />
+			<h3 class="justificado">Diseño de un modelo de decisión, basado en factores técnicos, para la adopción de una arquitectura de microservicios</h3>
+			<br/>
+			<p class="justificado">La selección de una arquitectura de software, es una gran decisión que a veces corre el riesgo de tomarse sin mayores 
+				fundamentos que la experiencia, una moda, por decisión discrecional del líder, por costo de oportunidad o a veces por utilizar 
+				un presupuesto asignado, pudiendo darse bajo criterios subjetivos. Esta deficiencia, hace que las empresas deban gestionar una 
+				diversidad de arquitecturas, producto de esas decisiones, con impacto directo en los costos, por la contratación de más personal 
+				técnico y adquisición de herramientas adicionales.
+				Este hecho, sumado al constante aparecimiento de nuevas técnicas y tecnologías, propias del avance tecnológico en el campo de 
+				la informática, podría estar provocando que las empresas migren sus anteriores arquitecturas a la de microservicios, con el 
+				propósito válido de mejorar sus capacidades, eficiencia, seguridad, adaptabilidad, entre otras características, pudiendo en 
+				algunos casos, no tomar en cuenta factores técnicos determinantes que fundamenten esta decisión, provocando consecuencias a 
+				las áreas de tecnología como: la obligación de mejorar sustancialmente sus capacidades tecnológicas y técnicas, así como aumentar 
+				la inversión de esfuerzo y tiempo en una migración que posiblemente no traiga los resultados esperados. 
+				En este contexto, se hace necesario contar con herramientas, metodologías, modelos y/o aplicativos, fundamentados en procesos 
+				de análisis e investigación científica, basados en las experiencias y estudios actualizados que se estén realizando en el área, 
+				con el fin de aportar significativamente y solventar una necesidad práctica, que permita a los gestores de proyectos de software, 
+				tomar una decisión profesional y fundamentada, al momento de tener que escoger la arquitectura del producto software.
+			</p>
+			<br />
+        </div>
+		<!--Ventana de Nuestro Equipo-->
+		 <div id="elProyecto_window2" style="display:none;">        
+			<p>A continuación encontrará información sobre el nuestro equipo de investigación:</p>
+			<br />
+			<br />
+			<div class="row">
+				<div class="col-6">
+					<div class="card" style="width: 14rem;">
+						<img src="../Images/gus.png" class="card-img-top img-thumbnail" alt="...">
+						<div class="card-body">
+							<p class="card-text justificado"><b>Ing. Gustavo Guaygua</b> estudiante de maestria en desarrollo de software en la Universidad de las
+								Fuerzas Armadas ESPE, militar en Servicio Activo de la Fuerza Aerea Ecuatoria, soñador y determinado.</p>
+						</div>
+					</div>
+				</div>				
+				<div class="col-6">
+					<div class="card" style="width: 14rem;">
+						<img src="../Images/lui.png" class="card-img-top img-thumbnail" alt="...">
+						<div class="card-body">
+							<p class="card-text justificado" ><b>Ing. Luis Caiza</b> estudiante de maestria en desarrollo de software en la Universidad de las 
+							Fuerzas Armadas ESPE, lider de desarrollo y apacionado por la programación, decidido y comprometido en cada objetivo que se plantea</p>
+						</div>
+					</div>
+				</div>	
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-4">
+				</div>
+				<div class="col-4">
+					<div class="card" style="width: 14rem;">
+						<img src="../Images/orlando.png" class="card-img-top img-thumbnail" alt="...">
+						<div class="card-body">
+							<p class="card-text justificado"><b>Ing. Orlando Chamorro msc.</b> Academico y Emprendedor, apacionado por la educación y la tecnología.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-4">
+				</div>	
+			</div>
+		</div>
+		<footer class="bg-light text-center text-lg-start">
+		<!-- Copyright -->
+		<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+			© 2020 Copyright:
+			<a class="text-dark" href="https://mdbootstrap.com/">SSAM ESPE</a>
+		</div>
+		<!-- Copyright -->
+		</footer>
+	</div>
+</body>
+<!--<div id="footer"></div>-->
+<div id="loading-container" class="loading-container" style="display: none;"><img src="../Images/preloading.gif" /><br><span id="loading-msg"></span></div>
+<div id="loading-container2" class="loading-container" style="display: none;"><img src="../Images/preloading.gif" /><br><span id="loading-msg"></span></div>
+<script src="../libs/headjs/head.min.js" data-headjs-load="../Scripts/Configure/Init.js"></script>
+
+</html>
