@@ -46,3 +46,18 @@ var RespuestaGeneralPojo = /** @class */ (function () {
     }
     return RespuestaGeneralPojo;
 }());
+var modularidad = /** @class */ (function () {
+    function modularidad() {
+    }
+    return modularidad;
+}());
+var factor = /** @class */ (function () {
+    function factor() {
+    }
+    return factor;
+}());
+var factorDetalle = /** @class */ (function () {
+    function factorDetalle() {
+    }
+    return factorDetalle;
+}());

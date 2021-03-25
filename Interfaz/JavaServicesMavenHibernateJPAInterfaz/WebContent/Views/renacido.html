@@ -1,0 +1,825 @@
+<html>
+
+<head>
+	<title>SSAM ESPE</title>
+	<!-- start: META -->
+    <meta charset="utf-8" />
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content="IE=edge,IE=9,IE=8,chrome=1" /><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+	<!-- end: META -->
+	<style>
+		#alignCenterTop {
+			height: 90%; 
+			width:100%;
+			display:flex;
+			align-items: center;
+			justify-content: center;
+			vertical-align:middle;
+		}		
+	</style>
+</head>
+
+<body>
+	<div id="carga">
+		<div class="alignCenterTop" id="alignCenterTop">
+			<h3>SSAM
+				<small class="text-muted">Sistema de Sugerencias de Arquitectura de Micro-servicios</small>
+			</h3>
+		</div>
+	</div>
+	<div id="principal" style="display: none;">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">SSAM</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+				<ul class="navbar-nav">
+					<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Información
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+						<li><a class="dropdown-item btnInfProyecto" href="#" onclick="javascript:llamarVentanaInformacionGeneral();">El proyecto</a></li>
+						<li><a class="dropdown-item" href="#" onclick="javascript:llamarVentanaEquipoGeneral();" >Nuestro Equipo</a></li>
+						<li><a class="dropdown-item" href="#">Contactanos</a></li>
+					</ul>
+					</li>
+				</ul>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container" id="parteInicial">
+			<div class="row">
+				<div class="col-3" class="fondoGris"></div>
+				<div class="col-6">
+				<br/>
+				<br/>
+				<h3 style="text-align: center;">Sistema de Sugerencias de Arquitectura de Micro-servicios (SSAM)</h3>
+				<br/>
+				<p>El sistema validará que tan recomendable es usar la arquitectura de micro-servicios
+					en base al analisís de factores técnicos evaluados a travez de un conjunto de partePreguntas
+					que necesitará responder a continuación.				 
+				</p>
+				<br/>
+				<p>
+					Para empezar coloque los siguientes datos.
+				</p>
+				<br/>
+				<div class="row">
+					<div class="col-2" ></div>
+					<div class="col-8">
+						<div class="mb-3">
+						<label for="in_nombre_proyecto" class="form-label">Nombre del proyecto</label>
+						<input type="text" class="form-control" id="in_nombre_proyecto" >
+						
+					</div>
+					<div class="mb-3">
+						<label for="in_nombre_usuario" class="form-label">Nombre de Usuario</label>
+						<input type="text" class="form-control" id="in_nombre_usuario">
+					</div>
+					<div class="mb-3">
+						<label for="in_nombre_usuario" class="form-label">Correo Electrónico</label>
+						<input type="email" class="form-control" id="in_email">
+					</div>
+					<div style="text-align:center">
+						<button type="button" id="btn_Ingresar" class="btn btn-primary">Comenzar</button>
+					</div>
+
+					</div>
+					<div class="col-2" ></div>
+				</div>
+				</div>
+				<div class="col-3" class="fondoGris"></div>
+			</div>
+		</div>
+		<!-- Preguntas -->
+		<div id="preguntas">
+			<br/>
+			<div class="container" id="cabeceraOriginal">
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-8">
+					<br/>
+					<br/>
+					<h4 align="center" class="nombreProyecto"></h4>
+					<h5 align="center" class="nombreUsuario"></h5>
+					<br/>				
+					<div align="center" id="idContador" style="text-align:center"></div>
+					<div align="center" id="profileCompleteness" style="text-align:center"></div>
+					</div>
+					<br/>
+				</div>
+				<div class="col-2"></div>
+			</div>
+			
+			<!-- Primera Pregunta -->
+			<div class="container" id="partePreguntas" style="display: none;">
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-8">
+					<p align="center"> A continuación se presentarán un conjunto de preguntas
+						que ayudará a determinar el grado de sugerencia de la aplicación sobre el uso de la 
+						arquitectura de micro-servicios.
+					</p>
+					
+					&nbsp;
+					<div id="preguntas" class="alert alert-primary" role="alert">
+						<p>1.	Marque con una “X”, en el patrón de despliegue de infraestructura/plataforma/software, en donde se pretende implementar el sistema a desarrollar; en este caso el término “en la nube” puede ser equitativo a “en la infraestructura convergente o hiperconvergente”</p>
+						<table class="table"><tr>
+                          <td><label style="font-size:18px"><input type="radio" class="pregunta1" name="pregunta1" value="ninguno">&nbsp;Ninguno, Servidor stand alone</label></td>
+                          <td title="(Single Platform Pattern)"><label style="font-size:18px"><input type="radio" class="pregunta1"  name="pregunta1" value="SPP">&nbsp;SPP</span></label></td>
+                          <td title="(Shared Platform Pattern)"><label style="font-size:18px"><input type="radio" class="pregunta1" name="pregunta1" value="SHPP">&nbsp;ShPP</label></td>
+                          <td title="(Clustered Platform Pattern)"><label style="font-size:18px"><input type="radio" class="pregunta1" name="pregunta1" value="CPP">&nbsp;CPP</label></td>
+                          <td title="(Multiple Shared Platform Pattern)"><label style="font-size:18px"><input type="radio" class="pregunta1" name="pregunta1" value="MSHPP">&nbsp;MShPP</label></td>
+				   		  <td title="(Multiple Clustered Platform Pattern)"><label style="font-size:18px"><input type="radio" class="pregunta1" name="pregunta1" value="MCPP">&nbsp;MCPP</label></td>
+                         </tr></table>
+					</div>
+					<div style="text-align:right">
+						<button type="button" id="btn_Siguiente" class="btn btn-primary">Continuar</button>
+					</div>
+					
+				</div>
+				<div class="col-2"></div>
+			</div>
+		</div>
+		<!-- Segunda Pregunta -->
+		<div class="container" id="parteDosPreguntas" style="display: none;">
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-8">
+					<br/>
+					<br/>
+					<p align="center"> A continuación se presentarán un conjunto de preguntas
+						que ayudará a determinar el grado de sugerencia de la aplicación sobre el uso de la 
+						arquitectura de micro-servicios.
+					</p>
+					<br/>
+					&nbsp;
+					<div class="alert alert-primary" role="alert">
+						<p>2.	De su infraestructura y con la ayuda de <a href="#" onclick="javascript:llamarVentanaHerramientasGeneral();" >una herramienta de evaluación o simulación</a>, ingrese los valores de rendimiento, requeridos en la tabla siguiente.</p>
+						</br>
+						<table class="table">
+						<thead>
+							<tr>
+								<th>Ord</th>
+								<th></th>
+								<th>Indicador</th>
+								<th>Valor</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td>1</td><td>Plataforma</td><td title="Número de mensajes reenviados a un punto final (end point) determinado">TC = Conteo Total</td><td><input type="number" class="form-control"  id="lineaTC"></td></tr>
+							<tr><td>2</td><td>Plataforma</td><td title="Número de mensajes que resultaron en un error mientras se reenviaban al punto final (end point)">FC = Conteo de Fallos</td><td><input type="number" class="form-control"  id="lineaFC"></td></tr>
+							<tr><td>3</td><td>Plataforma</td><td title="El tiempo mínimo que se tarda en enviar una solicitud al punto final (end point) y recibir una respuesta">MinT = Tiempo Mínimo(milisegundos)</td><td><input type="number" class="form-control"  id="TiempoMin"></td></tr>
+							<tr><td>4</td><td>Plataforma</td><td title="El tiempo máximo que se tarda en enviar una solicitud al punto final (end point) y recibir una respuesta">MaxT = Tiempo Máximo(milisegundos)</td><td><input type="number" class="form-control"  id="TiempoMax"></td></tr>
+							<tr><td>5</td><td>Plataforma</td><td title="El tiempo promedio que se tarda en enviar una solicitud al punto final (end point) y recibir una respuesta">AveT = Tiempo Promedio(milisegundos)</td><td><input type="number" class="form-control"  id="TiempoPromedio"></td></tr>
+							<tr><td>6</td><td>Host</td><td title="Utilización de la CPU en sistemas host e invitados.">CL = Carga de CPU (valor _%/100)</td><td><input type="number" class="form-control"  id="lineaCL"></td></tr>
+							<tr><td>7</td><td>Host</td><td title="Utilización de Memoria en sistemas host e invitados. ">MO = Ocupación de Memoria(valor _%/100)</td><td><input type="number" class="form-control"  id="lineaMO"></td></tr>
+							<tr><td>8</td><td>Host</td><td title="Utilización del Ancho de banda de la red">NU = Utilización de la Red (valor _%/100)</td><td><input type="number" class="form-control"  id="lineaNU"></td></tr>
+							<tr><td>9</td><td>Host</td><td title="Número de máquinas virtuales disponibles y accesibles a través de la red">HA = Disponibilidad de Host(Número de Host)</td><td><input type="number" class="form-control"  id="lineaHA"></td></tr>
+                        </tbody>
+                        
+                        </table>
+					</div>
+					<div style="text-align:right">
+						<button type="button" id="btn_Atras1" class="btn btn-light">Regresar</button><button type="button" id="btn_SiguienteDos" class="btn btn-primary">Continuar</button>
+					</div>	
+								
+				</div>
+				<div class="col-2"></div>
+			</div>
+		</div>
+		
+		<!-- tercera Pregunta -->
+		<div id="parteTresPreguntas">			
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-8">
+					<br/>
+					<br/>
+					<p align="center"> A continuación se presentarán un conjunto de preguntas
+						que ayudará a determinar el grado de sugerencia de la aplicación sobre el uso de la 
+						arquitectura de micro-servicios.
+					</p>
+					
+					&nbsp;
+					<div id="preguntas" class="alert alert-primary" role="alert">
+						<p>3.	Tengo experiencia usando herramientas de integración continua en el trabajo</p>
+						<table class="table"><tr>
+                          <td><label style="font-size:18px"><input type="radio" class="Integracion1" name="Integracion1" value="0">&nbsp;Totalmente en desacuerdo</label></td>
+                          <td><label style="font-size:18px"><input type="radio" class="Integracion1" name="Integracion1" value="0">&nbsp;En desacuerdo</label></td>
+                          <td><label style="font-size:18px"><input type="radio" class="Integracion1" name="Integracion1" value="1">&nbsp;Ni de acuerdo, ni en desacuerdo</label></td>
+                          <td><label style="font-size:18px"><input type="radio" class="Integracion1" name="Integracion1" value="2">&nbsp;De acuerdo</label></td>
+                          <td><label style="font-size:18px"><input type="radio" class="Integracion1" name="Integracion1" value="3">&nbsp;Totalmente de acuerdo</label></td>
+                         </tr></table>
+					</div>
+					<div style="text-align:right">
+						<button type="button" id="btn_Atras2" class="btn btn-light">Regresar</button><button type="button" id="btn_SiguienteTres" class="btn btn-primary">Continuar</button>
+					</div>					
+				</div>
+				<div class="col-2"></div>
+			</div>
+		</div>
+	</div>
+	<!-- Cuarta Pregunta -->
+		<div id="parteCuatroPreguntas">			
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-8">
+					<br/>
+					<br/>
+					<p align="center"> A continuación se presentarán un conjunto de preguntas
+						que ayudará a determinar el grado de sugerencia de la aplicación sobre el uso de la 
+						arquitectura de micro-servicios.
+					</p>
+					
+					&nbsp;
+					<div id="preguntas" class="alert alert-primary" role="alert">
+						<p>4.	Considero que la integración continua no es un asunto exclusivo de los programadores.</p>
+						<table class="table"><tr>
+                          <td><label style="font-size:18px"><input type="radio" class="Integracion2" name="Integracion2" value="0">&nbsp;Totalmente en desacuerdo</label></td>
+                          <td><label style="font-size:18px"><input type="radio" class="Integracion2" name="Integracion2" value="0">&nbsp;En desacuerdo</label></td>
+                          <td><label style="font-size:18px"><input type="radio" class="Integracion2" name="Integracion2" value="1">&nbsp;Ni de acuerdo, ni en desacuerdo</label></td>
+                          <td><label style="font-size:18px"><input type="radio" class="Integracion2" name="Integracion2" value="2">&nbsp;De acuerdo</label></td>
+                          <td><label style="font-size:18px"><input type="radio" class="Integracion2" name="Integracion2" value="3">&nbsp;Totalmente de acuerdo</label></td>
+                         </tr></table>
+					</div>
+					<div style="text-align:right">
+						<button type="button" id="btn_Atras3" class="btn btn-light">Regresar</button><button type="button" id="btn_SiguienteCuatro" class="btn btn-primary">Continuar</button>
+					</div>					
+				</div>
+				<div class="col-2"></div>
+			</div>
+		</div>
+		<!-- Quinta Pregunta -->
+		<div id="parteSextaPreguntas">			
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-8">
+					<br/>
+					<br/>
+					<p align="center"> A continuación se presentarán un conjunto de preguntas
+						que ayudará a determinar el grado de sugerencia de la aplicación sobre el uso de la 
+						arquitectura de micro-servicios.
+					</p>
+					
+					&nbsp;
+					<div id="preguntas" class="alert alert-primary" role="alert">
+						<p>5.	Considero que mi empresa actual da importancia a la integración continua.</p>
+						<table class="table"><tr>
+                          <td><label style="font-size:18px"><input type="radio" class="Integracion3" name="Integracion3" value="0">&nbsp;Totalmente en desacuerdo</label></td>
+                          <td><label style="font-size:18px"><input type="radio" class="Integracion3" name="Integracion3" value="0">&nbsp;En desacuerdo</label></td>
+                          <td><label style="font-size:18px"><input type="radio" class="Integracion3" name="Integracion3" value="1">&nbsp;Ni de acuerdo, ni en desacuerdo</label></td>
+                          <td><label style="font-size:18px"><input type="radio" class="Integracion3" name="Integracion3" value="2">&nbsp;De acuerdo</label></td>
+                          <td><label style="font-size:18px"><input type="radio" class="Integracion3" name="Integracion3" value="3">&nbsp;Totalmente de acuerdo</label></td>
+                         </tr></table>
+					</div>
+					<div style="text-align:right">
+						<button type="button" id="btn_Atras4" class="btn btn-light">Regresar</button><button type="button" id="btn_SiguienteSexto" class="btn btn-primary">Continuar</button>
+					</div>					
+				</div>
+				<div class="col-2"></div>
+			</div>
+		</div>
+		<!-- Septima Pregunta -->
+		<div id="parteSeptimaPreguntas">			
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-8">
+					<br/>
+					<br/>
+					<p align="center"> A continuación se presentarán un conjunto de preguntas
+						que ayudará a determinar el grado de sugerencia de la aplicación sobre el uso de la 
+						arquitectura de micro-servicios.
+					</p>
+					
+					&nbsp;
+					<div id="preguntas" class="alert alert-primary" role="alert">
+						<p>6.	Considero que la integración continúa debería ser más importante en mi empresa actual.</p>
+						<table class="table"><tr>
+                          <td><label style="font-size:18px"><input type="radio" class="Integracion4" name="Integracion4" value="0">&nbsp;Totalmente en desacuerdo</label></td>
+                          <td><label style="font-size:18px"><input type="radio" class="Integracion4" name="Integracion4" value="0">&nbsp;En desacuerdo</label></td>
+                          <td><label style="font-size:18px"><input type="radio" class="Integracion4" name="Integracion4" value="1">&nbsp;Ni de acuerdo, ni en desacuerdo</label></td>
+                          <td><label style="font-size:18px"><input type="radio" class="Integracion4" name="Integracion4" value="2">&nbsp;De acuerdo</label></td>
+                          <td><label style="font-size:18px"><input type="radio" class="Integracion4" name="Integracion4" value="3">&nbsp;Totalmente de acuerdo</label></td>
+                         </tr></table>
+					</div>
+					<div style="text-align:right">
+						<button type="button" id="btn_Atras5" class="btn btn-light">Regresar</button><button type="button" id="btn_SiguienteSeptimo" class="btn btn-primary">Continuar</button>
+					</div>					
+				</div>
+				<div class="col-2"></div>
+			</div>
+		</div>
+		
+		<!-- Octava Pregunta -->
+		<div class="container" id="parteOctavaPreguntas" style="display: none;">
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-8">
+					<br/>
+					<br/>
+					<p align="center"> A continuación se presentarán un conjunto de preguntas
+						que ayudará a determinar el grado de sugerencia de la aplicación sobre el uso de la 
+						arquitectura de micro-servicios.
+					</p>
+					<br/>
+					&nbsp;
+					<div class="alert alert-primary" role="alert">
+						<p>7.	De su infraestructura y con la ayuda de una herramienta de evaluación o simulación, ingrese los valores de rendimiento, requeridos en la tabla siguiente.</p>
+						</br>
+						<table class="table">
+						<thead>
+							<tr>
+								<th>Ord</th>
+								<th>Herramienta</th>
+								<th>Valor</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td>1</td><td>Anypoint Platform</td><td><input class="form-check-inputIntegracion5" type="checkbox"  id="Anypoint"></td></tr>
+							<tr><td>2</td><td>AWS CodePipeline</td><td><input class="form-check-input Integracion5" type="checkbox"  id="AWS"></td></tr>
+							<tr><td>3</td><td>Azure DevOps Server</td><td><input class="form-check-input Integracion5" type="checkbox"  id="AzureDevOps"></td></tr>
+							<tr><td>4</td><td>Azure pipelines</td><td><input class="form-check-input Integracion5" type="checkbox"  id="Azurepipelines"></td></tr>
+							<tr><td>5</td><td>Bamboo</td><td><input class="form-check-input Integracion5" type="checkbox"  id="Bamboo"></td></tr>
+							<tr><td>6</td><td>Bitbucket Pipelines</td><td><input class="form-check-input Integracion5" type="checkbox"  id="Bitbucket"></td></tr>
+							<tr><td>7</td><td>Bitrise</td><td><input class="form-check-input Integracion5" type="checkbox"  id="Bitrise"></td></tr>
+							<tr><td>8</td><td>Buddy</td><td><input class="form-check-input Integracion5" type="checkbox"  id="Buddy"></td></tr>
+							<tr><td>9</td><td>CircleCI</td><td><input class="form-check-input Integracion5" type="checkbox"  id="CircleCI"></td></tr>
+							<tr><td>10</td><td>CodeShip</td><td><input class="form-check-input Integracion5" type="checkbox"  id="CodeShip"></td></tr>
+							<tr><td>11</td><td>CruiseControl</td><td><input class="form-check-input Integracion5" type="checkbox"  id="CruiseControl"></td></tr>
+							<tr><td>12</td><td>GitLab CI</td><td><input class="form-check-input Integracion5" type="checkbox"  id="GitLab"></td></tr>
+							<tr><td>13</td><td>GameCraft</td><td><input class="form-check-input Integracion5" type="checkbox"  id="GameCraft"></td></tr>
+							<tr><td>14</td><td>GoCD</td><td><input class="form-check-input Integracion5" type="checkbox"  id="GoCD"></td></tr>
+							<tr><td>15</td><td>Jenkins</td><td><input class="form-check-input Integracion5" type="checkbox"  id="Jenkins"></td></tr>
+							<tr><td>16</td><td>Nevercode</td><td><input class="form-check-input Integracion5" type="checkbox"  id="Nevercode"></td></tr>
+							<tr><td>17</td><td>Octopus Deploy</td><td><input class="form-check-input Integracion5" type="checkbox"  id="Octopus"></td></tr>
+							<tr><td>18</td><td>TeamCity</td><td><input class="form-check-input Integracion5" type="checkbox"  id="TeamCity"></td></tr>
+							<tr><td>19</td><td>Travis CI</td><td><input class="form-check-input Integracion5" type="checkbox"  id="Travis"></td></tr>
+							<tr><td>20</td><td>Otra (excepto herramientas de control de versiones como: AccuRev, Basaar, CVS, Dropbox, GDrive, Git, GitLab, Mercurial, Perforce, IBM Rational Clear Case, SVN, VSS, etc. )</td><td><input class="form-check-input Integracion5" type="checkbox" id="Otras"></td></tr>
+						</tbody>
+                        </table>
+					</div>
+					<div style="text-align:right">
+						<button type="button" id="btn_Atras6" class="btn btn-light">Regresar</button><button type="button" id="btn_SiguienteOctava" class="btn btn-primary">Continuar</button>
+					</div>					
+				</div>
+				<div class="col-2"></div>
+			</div>
+		</div>
+		
+		<!-- Novena Pregunta -->
+		<div class="container" id="parteNovenaPreguntas" style="display: none;">
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-8">
+					<br/>
+					<br/>
+					<p align="center"> A continuación se presentarán un conjunto de preguntas
+						que ayudará a determinar el grado de sugerencia de la aplicación sobre el uso de la 
+						arquitectura de micro-servicios.
+					</p>
+					<br/>
+					&nbsp;
+					<div class="alert alert-primary" role="alert">
+						<p>7.	En el uso profesional de las herramientas de integración continua, ¿cuáles son los principales obstáculos y dificultades?</p>
+						</br>
+						<table class="table">
+						<thead>
+							<tr>
+								<th>Ord</th>
+								<th>Herramienta</th>
+								<th>Valor</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td>1</td><td>Archivos binarios y/o planos</td><td><input class="form-check-input Integracion6" type="checkbox"  id="Anypoint"></td></tr>
+							<tr><td>2</td><td>Dificultad para excluir archivos a sincronizar</td><td><input class="form-check-input Integracion6" type="checkbox"  id="AWS"></td></tr>
+							<tr><td>3</td><td>Difícil configuración</td><td><input class="form-check-input Integracion6" type="checkbox"  id="AzureDevOps"></td></tr>
+							<tr><td>4</td><td>Difícil instalación (cuestionables ventajas)</td><td><input class="form-check-input Integracion6" type="checkbox"  id="Azurepipelines"></td></tr>
+							<tr><td>5</td><td>Difícil utilización</td><td><input class="form-check-input Integracion6" type="checkbox"  id="Bamboo"></td></tr>
+							<tr><td>6</td><td>El uso de lenguajes script sin compilador causa muchas iteraciones hasta que el script funciona</td><td><input class="form-check-input Integracion6" type="checkbox"  id="Bitbucket"></td></tr>
+							<tr><td>7</td><td>Elevada curva de aprendizaje</td><td><input class="form-check-input Integracion6" type="checkbox"  id="Bitrise"></td></tr>
+							<tr><td>8</td><td>Entender la filosofía y aplicarlo de forma continua</td><td><input class="form-check-input Integracion6" type="checkbox"  id="Buddy"></td></tr>
+							<tr><td>9</td><td>Falta de disciplina y adaptación de un usuario primerizo al uso de herramientas como estas.</td><td><input class="form-check-input Integracion6" type="checkbox"  id="CircleCI"></td></tr>
+							<tr><td>10</td><td>Herramientas poco intuitivas</td><td><input class="form-check-input Integracion6" type="checkbox"  id="CodeShip"></td></tr>
+							<tr><td>11</td><td>La comunicación.</td><td><input class="form-check-input Integracion6" type="checkbox"  id="CruiseControl"></td></tr>
+							<tr><td>12</td><td>Mentalizar a TODO el equipo de que cualquier cosa que se suba al repositorio debe ser probada, aún si no hay herramientas de integración continua.</td><td><input class="form-check-input" type="checkbox"  id="GitLab"></td></tr>
+							<tr><td>13</td><td>Merging y branching</td><td><input class="form-check-input Integracion6" type="checkbox"  id="GameCraft"></td></tr>
+							<tr><td>14</td><td>No querer aprender por parte de mis superiores</td><td><input class="form-check-input Integracion6" type="checkbox"  id="GoCD"></td></tr>
+							<tr><td>15</td><td>My Spanish is not good, but I can read. The main difficulties is that developers do not understand the importance of CI, and not willing to write unit tests.</td><td><input class="form-check-input Integracion6" type="checkbox"  id="Jenkins"></td></tr>
+							<tr><td>16</td><td>Que no cuente con un buen analizador de calidad de código</td><td><input class="form-check-input Integracion6" type="checkbox"  id="Nevercode"></td></tr>
+							<tr><td>17</td><td>Que no se adapte al proyecto en desarrollo</td><td><input class="form-check-input Integracion6" type="checkbox"  id="Octopus"></td></tr>
+							<tr><td>18</td><td>Que no tenga buena documentación</td><td><input class="form-check-input Integracion6" type="checkbox"  id="TeamCity"></td></tr>
+							<tr><td>19</td><td>Se requiere de un equipo potente y dedicado exclusivamente a esta tarea</td><td><input class="form-check-input Integracion6" type="checkbox"  id="Travis"></td></tr>
+							<tr><td>20</td><td>Setup para múltiples plataformas "no estándar".</td><td><input class="form-check-input Integracion6" type="checkbox"  id="Otras"></td></tr>
+							<tr><td>21</td><td>Otro.</td><td><input class="form-check-input Integracion6" type="checkbox"  id="Otras"></td></tr>
+						</tbody>
+                        </table>
+					</div>
+					<div style="text-align:right">
+						<button type="button" id="btn_Atras7" class="btn btn-light">Regresar</button><button type="button" id="btn_SiguienteNovena" class="btn btn-primary">Continuar</button>
+					</div>					
+				</div>
+				<div class="col-2"></div>
+			</div>
+		</div>
+		<!-- Decima Pregunta -->
+		<div class="container" id="parteDecimaPreguntas" style="display: none;">
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-8">
+					<br/>
+					<br/>
+					<p align="center"> A continuación se presentarán un conjunto de preguntas
+						que ayudará a determinar el grado de sugerencia de la aplicación sobre el uso de la 
+						arquitectura de micro-servicios.
+					</p>
+					<br/>
+					&nbsp;
+					<div class="alert alert-primary" role="alert">
+						<p>8.	¿Qué características y facilidades valorarías más en una hipotética herramienta de integración continua?</p>
+						</br>
+						<table class="table">
+						<thead>
+							<tr>
+								<th>Ord</th>
+								<th>Característica más deseable</th>
+								<th>Valor</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td>1</td><td>Que sea gratis.</td><td><input class="form-check-input Integracion7" type="checkbox"  id="Anypoint"></td></tr>
+							<tr><td>2</td><td>Que sea de código abierto.</td><td><input class="form-check-input Integracion7" type="checkbox"  id="AWS"></td></tr>
+							<tr><td>3</td><td>Que se integre fácilmente con Unity o Unreal.</td><td><input class="form-check-input Integracion7" type="checkbox"  id="AzureDevOps"></td></tr>
+							<tr><td>4</td><td>Que esté bien documentado.</td><td><input class="form-check-input Integracion7" type="checkbox"  id="Azurepipelines"></td></tr>
+							<tr><td>5</td><td>Que sea fácil de instalar y configurar.</td><td><input class="form-check-input Integracion7" type="checkbox"  id="Bamboo"></td></tr>
+							<tr><td>6</td><td>Que sea fácilmente escalable.</td><td><input class="form-check-input Integracion7" type="checkbox"  id="Bitbucket"></td></tr>
+							<tr><td>7</td><td>Que esté tanto en español como en inglés.</td><td><input class="form-check-input Integracion7" type="checkbox"  id="Bitrise"></td></tr>
+							<tr><td>8</td><td>Que ofrezca servicios adicionales para la mejora de productividad como analizador de calidad de código.</td><td><input class="form-check-input Integracion7" type="checkbox"  id="Buddy"></td></tr>
+							<tr><td>9</td><td>Que su funcionalidad pueda ampliarse mediante plug-ins.</td><td><input class="form-check-input Integracion7" type="checkbox"  id="CircleCI"></td></tr>
+							<tr><td>10</td><td>Otro.</td><td><input class="form-check-input Integracion7" type="checkbox"  id="CodeShip"></td></tr>
+						</tbody>
+                        </table>
+					</div>
+					<div style="text-align:right">
+						<button type="button" id="btn_Atras8" class="btn btn-light">Regresar</button><button type="button" id="btn_SiguienteDecima" class="btn btn-primary">Continuar</button>
+					</div>					
+				</div>
+				<div class="col-2"></div>
+			</div>
+		</div>
+		
+		<!-- Once Pregunta -->
+		<div class="container" id="parteOncePreguntas" style="display: none;">
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-8">
+					<br/>
+					<br/>
+					<p align="center"> A continuación se presentarán un conjunto de preguntas
+						que ayudará a determinar el grado de sugerencia de la aplicación sobre el uso de la 
+						arquitectura de micro-servicios.
+					</p>
+					<br/>
+					&nbsp;
+					<div class="alert alert-primary" role="alert">
+						<p>9.	¿Qué aspectos y funcionalidades valoras más en las herramientas de integración continua que ya has utilizado? </p>
+						</br>
+						<table class="table">
+						<thead>
+							<tr>
+								<th>Ord</th>
+								<th>Aspecto con más valor</th>
+								<th>Valor</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td>1</td><td>Soporte para macOS.</td><td><input class="form-check-input Integracion8" type="checkbox"  id="Anypoint"></td></tr>
+							<tr><td>2</td><td>Soporte para GNU/Linux.</td><td><input class="form-check-input Integracion8" type="checkbox"  id="AWS"></td></tr>
+							<tr><td>3</td><td>Soporte para Windows.</td><td><input class="form-check-input Integracion8" type="checkbox"  id="AzureDevOps"></td></tr>
+							<tr><td>4</td><td>Que sea gratuito.</td><td><input class="form-check-input Integracion8" type="checkbox"  id="Azurepipelines"></td></tr>
+							<tr><td>5</td><td>Que sea de código abierto.</td><td><input class="form-check-input Integracion8" type="checkbox"  id="Bamboo"></td></tr>
+							<tr><td>6</td><td>Que esté traducido en varios idiomas.</td><td><input class="form-check-input Integracion8" type="checkbox"  id="Bitbucket"></td></tr>
+							<tr><td>7</td><td>Que pueda integrarse con plug-ins de terceros. </td><td><input class="form-check-input Integracion8" type="checkbox"  id="Bitrise"></td></tr>
+							<tr><td>8</td><td>Que tenga soporte nativo al motor Unity.</td><td><input class="form-check-input Integracion8" type="checkbox"  id="Buddy"></td></tr>
+							<tr><td>9</td><td>Que tenga soporte nativo al motor Unreal.</td><td><input class="form-check-input Integracion8" type="checkbox"  id="CircleCI"></td></tr>
+							<tr><td>10</td><td>Que tenga soporte nativo al motor Monogame</td><td><input class="form-check-input Integracion8" type="checkbox"  id="CodeShip"></td></tr>
+							<tr><td>11</td><td>Que tenga soporte nativo al motor Libgdx.</td><td><input class="form-check-input Integracion8" type="checkbox"  id="CruiseControl"></td></tr>
+							<tr><td>12</td><td>Que cuente con un buen analizador de calidad de código.</td><td><input class="form-check-input Integracion8" type="checkbox"  id="GitLab"></td></tr>
+							<tr><td>13</td><td>Que tenga buena documentación. </td><td><input class="form-check-input Integracion8" type="checkbox"  id="GameCraft"></td></tr>
+							<tr><td>14</td><td>Que sea fácil de instalar.</td><td><input class="form-check-input Integracion8" type="checkbox"  id="GoCD"></td></tr>
+							<tr><td>15</td><td>Que sea fácil de configurar.</td><td><input class="form-check-input Integracion8" type="checkbox"  id="Jenkins"></td></tr>
+							<tr><td>16</td><td>Que sean muy adaptables al proyecto en desarrollo.</td><td><input class="form-check-input Integracion8" type="checkbox"  id="Nevercode"></td></tr>
+							<tr><td>17</td><td>Poder excluir fácilmente archivos a sincronizar.</td><td><input class="form-check-input Integracion8" type="checkbox"  id="Octopus"></td></tr>
+							<tr><td>18</td><td>Que sea fácil de usar.</td><td><input class="form-check-input Integracion8" type="checkbox"  id="TeamCity"></td></tr>
+							<tr><td>19</td><td>Otro</td><td><input class="form-check-input Integracion8" type="checkbox"  id="Travis"></td></tr>
+							</tbody>
+                        </table>
+					</div>
+					<div style="text-align:right">
+						<button type="button" id="btn_Atras9" class="btn btn-light">Regresar</button><button type="button" id="btn_SiguienteOnce" class="btn btn-primary">Continuar</button>
+					</div>					
+				</div>
+				<div class="col-2"></div>
+			</div>
+		</div>
+		
+		<!-- Doce Pregunta -->
+		<div class="container" id="parteDocePreguntas" style="display: none;">
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-8">
+					<br/>
+					<br/>
+					<p align="center"> A continuación se presentarán un conjunto de preguntas
+						que ayudará a determinar el grado de sugerencia de la aplicación sobre el uso de la 
+						arquitectura de micro-servicios.
+					</p>
+					<br/>
+					<button type="button" id="btn_Modulo" class="btn btn-primary">Agregar Modulo</button>
+					<br/>&nbsp;
+					<br/>&nbsp;					
+					<table class="table-bordered">
+					<thead>
+						<tr>
+	                		<th>N.-</th>
+	                		<th title="Nombre del Módulo">Nombre</th>
+	                		<th title="Peso del Módulo">Peso</th>
+	                		<th>Agregar Datos</th>
+	               			<th>Eliminar</th>	
+                		</tr>
+               		</thead>
+              		<tbody id="ControlesDinamicos">
+              			
+              		</tbody>
+             		</table>
+					<br/>
+					<div id="sumatoriaModulos"></div>
+					<br/>
+					<br/>
+					<div style="text-align:right">
+						<button type="button" id="btn_Atras10" class="btn btn-light">Regresar</button><button type="button" id="btn_ConfirmarModulos" class="btn btn-primary">Confirmar Modulos</button><button type="button" style="display:none;" id="btn_SiguienteDoce" class="btn btn-primary">Continuar</button>
+					</div>					
+				</div>
+				<div class="col-2"></div>
+			</div>
+		</div>
+		
+		
+		
+		<!-- fin preguntas -->
+	</div>
+	
+	
+		<!--Ventana de analisis-->
+		<div class="container" id="parteAnalisis" style="display: none;">
+			<div class="row">
+				<div class="col-2">					
+				</div>
+				<div class="col-8">
+					<br/>
+					<div id="tituloFinal"></div>
+					<br/>
+					<button class='k-button' id="descargaPrincipal">Descargar como PDF</button>
+					<div id="chart-mmHg"></div>
+				</div>
+				<div class="col-2">
+					
+				</div>
+			</div>
+			<br/>
+			<br/>
+			<div class="row">
+				<div class="col-6">
+					<button class='k-button' id="descargaSegunda">Descargar como PDF</button>
+					<div id="chart"></div>
+				</div>
+				<div class="col-6">
+					<div id="resumenFactor"></div>				
+				</div>
+				
+			</div>
+			<br/>
+			<br/>
+			<div style="text-align:right">
+				<button type="button" id="btn_Atras11" class="btn btn-light">Regresar</button>
+			</div>	
+		</div>
+		<br/>
+		<br/>
+		<!--Ventana de informacion-->
+		 <div id="elProyecto_window" style="display:none;">        
+			<p>A continuación encontrará información sobre el proyecto:</p>
+			<br />
+			<br />
+			<h3 class="justificado">Diseño de un modelo de decisión, basado en factores técnicos, para la adopción de una arquitectura de microservicios</h3>
+			<br/>
+			<p class="justificado">La selección de una arquitectura de software, es una gran decisión que a veces corre el riesgo de tomarse sin mayores 
+				fundamentos que la experiencia, una moda, por decisión discrecional del líder, por costo de oportunidad o a veces por utilizar 
+				un presupuesto asignado, pudiendo darse bajo criterios subjetivos. Esta deficiencia, hace que las empresas deban gestionar una 
+				diversidad de arquitecturas, producto de esas decisiones, con impacto directo en los costos, por la contratación de más personal 
+				técnico y adquisición de herramientas adicionales.
+				Este hecho, sumado al constante aparecimiento de nuevas técnicas y tecnologías, propias del avance tecnológico en el campo de 
+				la informática, podría estar provocando que las empresas migren sus anteriores arquitecturas a la de microservicios, con el 
+				propósito válido de mejorar sus capacidades, eficiencia, seguridad, adaptabilidad, entre otras características, pudiendo en 
+				algunos casos, no tomar en cuenta factores técnicos determinantes que fundamenten esta decisión, provocando consecuencias a 
+				las áreas de tecnología como: la obligación de mejorar sustancialmente sus capacidades tecnológicas y técnicas, así como aumentar 
+				la inversión de esfuerzo y tiempo en una migración que posiblemente no traiga los resultados esperados. 
+				En este contexto, se hace necesario contar con herramientas, metodologías, modelos y/o aplicativos, fundamentados en procesos 
+				de análisis e investigación científica, basados en las experiencias y estudios actualizados que se estén realizando en el área, 
+				con el fin de aportar significativamente y solventar una necesidad práctica, que permita a los gestores de proyectos de software, 
+				tomar una decisión profesional y fundamentada, al momento de tener que escoger la arquitectura del producto software.
+			</p>
+			<br />
+        </div>
+		<!--Ventana de Nuestro Equipo-->
+		 <div id="elProyecto_window2" style="display:none;">        
+			<p>A continuación encontrará información sobre el nuestro equipo de investigación:</p>
+			<br />
+			<br />
+			<div class="row">
+				<div class="col-6">
+					<div class="card" style="width: 14rem;">
+						<img src="../Images/gus.png" class="card-img-top img-thumbnail" alt="...">
+						<div class="card-body">
+							<p class="card-text justificado"><b>Ing. Gustavo Guaygua</b> estudiante de maestria en desarrollo de software en la Universidad de las
+								Fuerzas Armadas ESPE, militar en Servicio Activo de la Fuerza Aerea Ecuatoria, soñador y determinado.</p>
+						</div>
+					</div>
+				</div>				
+				<div class="col-6">
+					<div class="card" style="width: 14rem;">
+						<img src="../Images/lui.png" class="card-img-top img-thumbnail" alt="...">
+						<div class="card-body">
+							<p class="card-text justificado" ><b>Ing. Luis Caiza</b> estudiante de maestria en desarrollo de software en la Universidad de las 
+							Fuerzas Armadas ESPE, lider de desarrollo y apacionado por la programación, decidido y comprometido en cada objetivo que se plantea</p>
+						</div>
+					</div>
+				</div>	
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-4">
+				</div>
+				<div class="col-4">
+					<div class="card" style="width: 14rem;">
+						<img src="../Images/orlando.png" class="card-img-top img-thumbnail" alt="...">
+						<div class="card-body">
+							<p class="card-text justificado"><b>Ing. Orlando Chamorro msc.</b> Academico y Emprendedor, apacionado por la educación y la tecnología.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-4">
+				</div>	
+			</div>
+		</div>
+		<!--Ventana de Opciones de herramientas-->
+		 <div id="ventanaOpcionesHerramientas" style="display:none;">        
+			<p>A continuación se mostrarán las herramientas sugeridas para llenar la tabla:</p>
+			<br />
+			<br />
+			<div class="row">
+				<div class="col-2">					
+				</div>				
+				<div class="col-8">
+					<ul>
+						<li>	Blazemeter (plan 50user gratuito - https://www.blazemeter.com/)</li> 
+						<li>	Dotcom (30días gratis - https://www.dotcom -monitor.com/es/)</li> 
+						<li>	Dynatrace (15días gratis - https://www.dynatrace.com/)</li> 
+						<li>	FloodIO (plan gratuito - https://www.flood.io/)</li> 
+						<li>	K6 (plan 50 pruebas gratuitas - https://k6.io/cloud)</li> 
+						<li>	Loader (plan 1000user gratuito - https://loader.io/), 
+						<li>	LoadFocus (plan 20pruebas gratuitas - https://loadfocus.com/)</li> 
+						<li>	LoadStorm (plan 10user gratuito - https://loadstorm.com/)</li> 
+						<li>	LoadView (de pago - https://www.loadview-testing.com/)</li> 
+						<li>	OctoPerf (plan 50user gratuito - https://octoperf.com/pricing/)</li> 
+						<li>	O siempre se puede recurrir a JConsole y JMeter</li> 
+					</ul>
+				</div>	
+				<div class="col-2">					
+				</div>	
+			</div>
+			<br/>
+			
+		</div>
+		
+		<!--Ventana de Agregar modulos-->
+		 <div id="ventanaAgregarModulos" style="display:none;">    
+		 	<p>Llene los datos para poder agregar un módulo:</p>			
+			<div class="row">
+				<div class="col-2">					
+				</div>				
+				<div class="col-8">
+					<form>
+					  
+					  <div class="mb-3">
+					    <label for="exampleInputEmail1" class="form-label">CBN</label>
+					    <input type="number" class="form-control" id="inCBN" aria-describedby="CBNlHelp">
+					    <div id="CBNlHelp" class="form-text">El número de dependencias de un nodo físico a otros nodos físicos.</div>
+					  </div>
+					  
+					  <div class="mb-3">
+					    <label for="exampleInputEmail1" class="form-label">CBCOM (Coupling Between Components)</label>
+					    <input type="number" class="form-control" id="inCBCOM" aria-describedby="CBCOMlHelp">
+					    <div id="CBCOMlHelp" class="form-text">El número de todas las dependencias de un componente a otros.</div>
+					  </div>
+					  <div class="mb-3">
+					    <label for="exampleInputEmail1" class="form-label">AC (Afferent Coupling Between Components)</label>
+					    <input type="number" class="form-control" id="inAC" aria-describedby="ACHelp">
+					    <div id="ACHelp" class="form-text">La cantidad de componentes que requieren servicio del componente evaluado.</div>
+					  </div>
+					  <div class="mb-3">
+					    <label for="exampleInputEmail1" class="form-label">EC (Efferent Coupling Between Components)</label>
+					    <input type="number" class="form-control" id="inEC" aria-describedby="ECHelp">
+					    <div id="ECHelp" class="form-text">El número de componentes de los que el componente evaluado requiere servicio de ellos.</div>
+					  </div>
+					  <div class="mb-3">
+					    <label for="exampleInputEmail1" class="form-label">NUCPCOM (Number of Use Case per Components)</label>
+					    <input type="number" class="form-control" id="inNUCPCOM" aria-describedby="NUCPCOMHelp">
+					    <div id="NUCPCOMHelp" class="form-text">El número de casos de uso en los que participa un componente.</div>
+					  </div>
+					  <div class="mb-3">
+					    <label for="exampleInputEmail1" class="form-label">NumCycles</label>
+					    <input type="number" class="form-control" id="inNumCycles" aria-describedby="NumCyclesHelp">
+					    <div id="NumCyclesHelp" class="form-text">El número de ciclos de dependencia de un componente.</div>
+					  </div>
+					  <div class="mb-3">
+					    <label for="exampleInputEmail1" class="form-label">InDepned</label>
+					    <input type="number" class="form-control" id="inInDepned" aria-describedby="InDepnedHelp">
+					    <div id="InDepnedHelp" class="form-text">El número de rutas indirectas de un componente a otros componentes.</div>
+					  </div>
+					  <div class="mb-3">
+					    <label for="exampleInputEmail1" class="form-label">NCOMPUC (Number of Components per Use Case)</label>
+					    <input type="number" class="form-control" id="inNCOMPUC" aria-describedby="NCOMPUCHelp">
+					    <div id="NCOMPUCHelp" class="form-text">El número de componentes correspondientes a un caso de uso.</div>
+					  </div>
+					  <div class="mb-3">
+					    <label for="exampleInputEmail1" class="form-label">NCPCOM (Number of Classes per Component)</label>
+					    <input type="number" class="form-control" id="inNCPCOM" aria-describedby="NCPCOMHelp">
+					    <div id="NCPCOMHelp" class="form-text">El número de clases por módulo.</div>
+					  </div>
+					  					  					  
+					  <button type="button" id ="AgregarModuloLista" class="btn btn-primary">AGREGAR</button>
+					  <button type="button" id = "CancelarModulo" class="btn btn-secondary">CANCELAR</button>
+					</form>
+				</div>	
+				<div class="col-2">					
+				</div>	
+			</div>
+			<br/>			
+		</div>
+		
+		<!--Ventana de Agregar modulos-->
+		 <div id="VentanaAgregarModulo" style="display:none;">    
+		 	<br />&nbsp;
+			<br />&nbsp;    
+			<p>Coloque un Nombre al Módulo y un peso referencial sobre toda la aplicación:</p>			
+			<div class="row">
+				<div class="col-2">					
+				</div>				
+				<div class="col-8">
+					<form>
+					<div class="mb-3">
+					    <label for="exampleInputEmail1" class="form-label">Nombre</label>
+					    <input type="text" class="form-control" id="inNombre" aria-describedby="NombreHelp">
+					    <div id="NombreHelp" class="form-text">Nombre del módulo.</div>
+				    </div>
+					 <div class="mb-3">
+					    <label for="exampleInputEmail1" class="form-label">Peso</label>
+					    <input type="number" class="form-control" id="inPeso" aria-describedby="PesoHelp">
+					    <div id="PesoHelp" class="form-text">Peso del modulo en toda la aplicación.</div>
+					  </div>
+					  </form>
+					  <button type="button" id ="AgregarMod" class="btn btn-primary">AGREGAR</button>
+					  <button type="button" id = "CancelarMod" class="btn btn-secondary">CANCELAR</button>
+				</div>
+				<div class="col-2">					
+				</div>
+			</div>
+		</div>
+		
+		
+		<footer class="bg-light text-center text-lg-start">
+		<!-- Copyright -->
+		<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+			© 2020 Copyright:
+			<a class="text-dark" href="https://mdbootstrap.com/">SSAM ESPE</a>
+		</div>
+		<!-- Copyright -->
+		</footer>
+	</div>
+</body>
+<!--<div id="footer"></div>-->
+<div id="loading-container" class="loading-container" style="display: none;"><img src="../Images/preloading.gif" /><br><span id="loading-msg"></span></div>
+<div id="loading-container2" class="loading-container" style="display: none;"><img src="../Images/preloading.gif" /><br><span id="loading-msg"></span></div>
+<script src="../libs/headjs/head.min.js" data-headjs-load="../Scripts/Configure/Init.js"></script>
+
+</html>

@@ -81,3 +81,32 @@ class RespuestaGeneralPojo {
     public calificacionEstadistica:number;  
     public Recomendacion:string;
 }
+
+class modularidad{
+    public id:number;
+    public peso:number;
+    public modularidad:number;
+    public pesoEstadistico:number;
+    public modularidadPeso:number;
+}
+
+class factor{
+ public nombre:string;
+ public valor:number;
+}
+
+class factorDetalle{
+    public id:number;
+    public nombre:string;
+    public peso:number;
+    public cbn:number;
+    public cbcom:number;
+    public ac:number;
+    public ec:number;
+    public nucpcom:number;
+    public numcycles:number;
+    public indepnedd:number;
+    public ncompuc:number;
+    public ncpcom:number;
+    public modularidad:number;
+}

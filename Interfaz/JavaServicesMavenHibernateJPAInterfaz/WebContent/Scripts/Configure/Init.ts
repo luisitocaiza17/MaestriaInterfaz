@@ -10,6 +10,51 @@
 var idleTime = 0;
 var llamarVentanaInformacionGeneral;
 var llamarVentanaEquipoGeneral;
+var llamarVentanaHerramientasGeneral;
+/**VARIABLES CONFIGURABLES**/
+var valorMinimoFCTC=20;//1200FC / 5% de fallos = 20//
+var valorMinimoMaxMinTiempo=750;
+var valroMinitmoAveT=40;
+var valorMinimoMO=80;
+var valorMinimoTC=1200;
+var valorMinimoCL=62;
+var valorMinimoHA=2;
+var valorMinimoNU=40;
+/**FACTORES TECNICOS Y PORCENTAJES DE RECOMENDACION**/
+/**Preguntas uno y dos**/
+var valorPorcentualEscalabilidadDinamica=0;
+var valorPorcentualManejabilidad=0;
+var valorPorcentualUtilizacionRecursos=0;
+var valorPorcentualDsiponibilidad=0;
+var valorPorcentualFiabilidad=0;
+var valorPorcentualComputacionNube=0;
+/**Terceras Preguntas**/
+var valorPorcentualIntegracionContinua=0;
+/**Cuartas Preguntas**/
+var valorPorcentualModularidad=0;
+var valorPorcentualMantenibilidad=0;
+var valorPorcentualReusabilidad=0;
+var valorPorcentualFlexibilidad=0;
+var valorPorcentualInterOperabilidad=0;
+var valorPorcentualChoesionAcoplamiento=0;
+var valorPorcentualPortabilidad=0;
+
+
+var valorPorcentualAdaptabilidad=0;
+
+var valorPorcentualComunicacionLivianas=0;
+
+var valorPorcentualOrganizacionEquipo=0;
+
+//valores globales
+var valorMinimoRecomendado=50;
+var eliminar;
+var editar;
+//Valores Minimos y maiximos
+var dMin=3;
+var dMax=7;
+
+
 // primero cargo Jquery
 head.load(
         "../Config.js",
@@ -22,10 +67,14 @@ head.load(
         
     // Luego cargo Kendo UI y el Estilo principal del sitio
     head.load("../libs/bootstrap/css/bootstrap.min.css",
-        "../libs/bootstrap/js/bootstrap.bundle.min.js",
-            "../libs/kendo-ui/js/jquery.min.js", 
+            "../libs/bootstrap/js/bootstrap.bundle.min.js",
+            "../libs/bootstrap/js/popper.min.js",
+        "../libs/bootstrap/js/bootstrap.js", 
+        "../libs/bootstrap/js/bootstrap.min.js", 
+        "../libs/bootstrap/js/bootstrap.bundle.min.js", 
+        "../libs/bootstrap/js/bootstrap.bundle.js", 
+          "../libs/kendo-ui/js/jquery.min.js", 
             "../libs/kendo-ui/js/kendo.all.min.js",
-            "../libs/kendo-ui/styles/kendo.default-v2.min.css",
             "../libs/kendo-ui/styles/kendo.default-v2.min.css", 
         function () {
             $('#loading-container2').show();
