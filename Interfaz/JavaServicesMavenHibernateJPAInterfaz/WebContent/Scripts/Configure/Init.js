@@ -9,6 +9,8 @@ var idleTime = 0;
 var llamarVentanaInformacionGeneral;
 var llamarVentanaEquipoGeneral;
 var llamarVentanaHerramientasGeneral;
+var llamarVentanaOpcionesMenuGeneral;
+var llamarVentanaContactosGeneral;
 /**VARIABLES CONFIGURABLES**/
 var valorMinimoFCTC = 20; //1200FC / 5% de fallos = 20//
 var valorMinimoMaxMinTiempo = 750;

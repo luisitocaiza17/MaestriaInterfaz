@@ -41,7 +41,7 @@ head.ready(function () {
     //inicializacion de barra de progreso
     var pb = $("#profileCompleteness").kendoProgressBar({
                 min: 0,
-                max: 12,                
+                max: 11,                
                 type: "percent"
             }).data("kendoProgressBar");
 
@@ -195,7 +195,10 @@ head.ready(function () {
         $('#parteTresPreguntas').hide();      
         $("#idContador").empty();
         pb.value(1);
+        $("#idContador").empty();
+        $("#idContador").append('<p>Preguntas</p><p>1/11</p>');
     });
+    var contadorPorcentajes=0;
   //funcion  del segundo  formulario  
     $('#btn_SiguienteDos').click(function () {
            //hacemos el calculo
@@ -207,18 +210,42 @@ head.ready(function () {
         if($("#lineaFC").val()== undefined || $("#lineaFC").val() == ''){
             return alert('FC debe contener un valor numerico');
         }
-        primeraMetricaDos = Number($("#lineaFC").val())/Number( $("#lineaTC").val());
-        if(valorMinimoFCTC<primeraMetricaDos)
-                primerMetricaAlta=true;
-                
-        //SEGUNDA PREGUNTA
-        //si MaxT − MinT es ALTA
+         
         if($("#TiempoMax").val()== undefined || $("TiempoMax").val() == ''){
             return alert('MaxT = Tiempo Máximo debe contener un valor numerico');
         }
         if($("#TiempoMin").val()== undefined || $("#TiempoMin").val() == ''){
             return alert('MinT = Tiempo Mínimo debe contener un valor numerico');
         }
+        if($("#lineaNU").val()== undefined || $("#lineaNU").val() == ''){
+            return alert('NU = Utilización de la Red (valor _%/100) un valor numerico');
+        } 
+        
+        if($("#lineaMO").val()== undefined || $("lineaMO").val() == ''){
+            return alert('MO = Ocupación de Memoria debe contener un valor numerico');
+        }    
+        if(Number($("#lineaMO").val())>100){
+            return alert('MO = Ocupación de Memoria no puede sobre pasar el 100%');
+        }   
+        
+        if($("#lineaCL").val()== undefined || $("lineaCL").val() == ''){
+            return alert('CL = Carga de CPU debe contener un valor numerico');
+        } 
+        //No puede ser mayor al 100%    
+        if(Number($("#lineaCL").val())>100){
+            return alert('CL = Carga de CPU no puede sobre pasar el 100%');
+        } 
+        
+        if(Number($("#lineaNU").val())>100){
+            return alert('Utilización del Ancho de banda de la red no puede sobre pasar el 100%');
+        } 
+        
+        primeraMetricaDos = Number($("#lineaFC").val())/Number( $("#lineaTC").val());        
+        if(valorMinimoFCTC<primeraMetricaDos)
+                primerMetricaAlta=true;
+        //SEGUNDA PREGUNTA
+        //si MaxT − MinT es ALTA
+        
         segundaMetricaDos = Number( $("#TiempoMax").val())-Number($("#TiempoMin").val());        
         if(valorMinimoMaxMinTiempo<segundaMetricaDos) 
                 segundaMetricaAlta=true;
@@ -233,9 +260,7 @@ head.ready(function () {
                 terceraMetricaAlta=true;     
         //CUARTA PREGUNTA
         //si TC es BAJA y MO es ALTA
-            if($("#lineaMO").val()== undefined || $("lineaMO").val() == ''){
-                return alert('MO = Ocupación de Memoria debe contener un valor numerico');
-            }    
+             
            //metrica tc alta
             if(valorMinimoTC<Number($("#lineaTC").val()))    
                 MetricaTCAlta=true;    
@@ -250,9 +275,7 @@ head.ready(function () {
           //QUINTA PREGUNTA
           //si TC es ALTA y CL es BAJA y HA es BAJA
                 
-            if($("#lineaCL").val()== undefined || $("lineaCL").val() == ''){
-                return alert('CL = Carga de CPU debe contener un valor numerico');
-            }    
+             
             //metrica CL    
             if(valorMinimoCL<Number($("#lineaCL").val()))    
                 MetricaCLAlta=true;    
@@ -286,7 +309,7 @@ head.ready(function () {
                     OctavaMetricaAlta=true;
                 
                 //verificamos las alarmas levantadas
-                var contadorPorcentajes=0;
+              
                 if(primerMetricaAlta==true)
                     contadorPorcentajes+=12.5;
                 if(segundaMetricaAlta==true)
@@ -323,17 +346,25 @@ head.ready(function () {
                 $('#parteDosPreguntas').hide();
                 $('#parteTresPreguntas').show();      
                 $("#idContador").empty();
-                $("#idContador").append('<p>Preguntas</p><p>3/12</p>');
+                $("#idContador").append('<p>Preguntas</p><p>3/11</p>');
                 pb.value(3);        
              
     });
     
         //regresar a pregunta 2
         $('#btn_Atras2').click(function () {
-            $('#parteCuatroPreguntas').show();
-            $('#parteTresPreguntas').show();      
+            $('#parteDosPreguntas').show();
+            $('#parteTresPreguntas').hide();      
             $("#idContador").empty();
             pb.value(2);
+            $("#idContador").empty();
+            $("#idContador").append('<p>Preguntas</p><p>2/11</p>');
+            preguntaIntegracionContinua=0;
+            valorPorcentualEscalabilidadDinamica-=contadorPorcentajes;   
+            valorPorcentualManejabilidad-=contadorPorcentajes; 
+            valorPorcentualUtilizacionRecursos-=contadorPorcentajes; 
+            valorPorcentualDsiponibilidad-=contadorPorcentajes; 
+            valorPorcentualFiabilidad-=contadorPorcentajes; 
         });   
         
     //funcion  del tercer  formulario  
@@ -345,7 +376,7 @@ head.ready(function () {
         $('#parteTresPreguntas').hide();
         $('#parteCuatroPreguntas').show();
         $("#idContador").empty();
-        $("#idContador").append('<p>Preguntas</p><p>4/12</p>');
+        $("#idContador").append('<p>Preguntas</p><p>4/11</p>');
         pb.value(4);
         preguntaIntegracionContinua+=Number($('input[name="Integracion1"]:checked').val());
     });
@@ -356,6 +387,9 @@ head.ready(function () {
         $('#parteTresPreguntas').show();      
         $("#idContador").empty();
         pb.value(3);
+        $("#idContador").empty();
+        $("#idContador").append('<p>Preguntas</p><p>3/11</p>');
+        preguntaIntegracionContinua=preguntaIntegracionContinua-Number($('input[name="Integracion1"]:checked').val());
     });   
         
   //funcion  del tercer  formulario  
@@ -367,7 +401,7 @@ head.ready(function () {
         $('#parteCuatroPreguntas').hide();
         $('#parteSextaPreguntas').show();
         $("#idContador").empty();
-        $("#idContador").append('<p>Preguntas</p><p>5/12</p>');
+        $("#idContador").append('<p>Preguntas</p><p>5/11</p>');
         pb.value(5);
         preguntaIntegracionContinua+=Number($('input[name="Integracion2"]:checked').val());
     });
@@ -378,6 +412,9 @@ head.ready(function () {
         $('#parteSextaPreguntas').hide();      
         $("#idContador").empty();
         pb.value(4);
+        $("#idContador").empty();
+        $("#idContador").append('<p>Preguntas</p><p>4/11</p>');
+        preguntaIntegracionContinua -=Number($('input[name="Integracion2"]:checked').val());
     });     
     
   //funcion  del tercer  formulario  
@@ -389,7 +426,7 @@ head.ready(function () {
         $('#parteSextaPreguntas').hide();
         $('#parteSeptimaPreguntas').show();
         $("#idContador").empty();
-        $("#idContador").append('<p>Preguntas</p><p>6/12</p>');
+        $("#idContador").append('<p>Preguntas</p><p>6/11</p>');
         pb.value(6);
         preguntaIntegracionContinua+=Number($('input[name="Integracion3"]:checked').val());
     });
@@ -400,6 +437,9 @@ head.ready(function () {
         $('#parteSeptimaPreguntas').hide();      
         $("#idContador").empty();
         pb.value(5);
+        $("#idContador").empty();
+        $("#idContador").append('<p>Preguntas</p><p>5/11</p>');
+        preguntaIntegracionContinua-=Number($('input[name="Integracion3"]:checked').val());
     }); 
   //funcion  del tercer  formulario  
     $('#btn_SiguienteSeptimo').click(function () {
@@ -410,7 +450,7 @@ head.ready(function () {
         $('#parteSeptimaPreguntas').hide();
         $('#parteOctavaPreguntas').show();
         $("#idContador").empty();
-        $("#idContador").append('<p>Preguntas</p><p>7/12</p>');
+        $("#idContador").append('<p>Preguntas</p><p>7/11</p>');
         pb.value(7);
         preguntaIntegracionContinua+=Number($('input[name="Integracion4"]:checked').val());
     });
@@ -421,6 +461,9 @@ head.ready(function () {
         $('#parteOctavaPreguntas').hide();      
         $("#idContador").empty();
         pb.value(6);
+        $("#idContador").empty();
+        $("#idContador").append('<p>Preguntas</p><p>6/11</p>');
+        preguntaIntegracionContinua-=Number($('input[name="Integracion4"]:checked').val());
     }); 
     
   //funcion  del tercer  formulario  
@@ -429,7 +472,7 @@ head.ready(function () {
         $('#parteOctavaPreguntas').hide();
         $('#parteNovenaPreguntas').show();
         $("#idContador").empty();
-        $("#idContador").append('<p>Preguntas</p><p>8/12</p>');
+        $("#idContador").append('<p>Preguntas</p><p>8/11</p>');
         pb.value(8);
         var preguntasCheckeadas= $('.Integracion5').filter(':checked').length;
         if(preguntasCheckeadas>0)
@@ -441,6 +484,9 @@ head.ready(function () {
         $('#parteNovenaPreguntas').hide();      
         $("#idContador").empty();
         pb.value(7);
+        $("#idContador").empty();
+        $("#idContador").append('<p>Preguntas</p><p>7/11</p>');
+        preguntaIntegracionContinua--;
     }); 
   //funcion  del tercer  formulario  
     $('#btn_SiguienteNovena').click(function () {
@@ -448,7 +494,7 @@ head.ready(function () {
         $('#parteNovenaPreguntas').hide();
         $('#parteDecimaPreguntas').show();
         $("#idContador").empty();
-        $("#idContador").append('<p>Preguntas</p><p>9/12</p>');
+        $("#idContador").append('<p>Preguntas</p><p>9/11</p>');
         pb.value(9);
         var preguntasCheckeadas= $('.Integracion6').filter(':checked').length;
         if(preguntasCheckeadas>0)
@@ -460,6 +506,8 @@ head.ready(function () {
         $('#parteDecimaPreguntas').hide();      
         $("#idContador").empty();
         pb.value(8);
+        $("#idContador").append('<p>Preguntas</p><p>8/11</p>');
+        preguntaIntegracionContinua--;
     }); 
   //funcion  del tercer  formulario  
     $('#btn_SiguienteDecima').click(function () {
@@ -467,7 +515,7 @@ head.ready(function () {
         $('#parteDecimaPreguntas').hide();
         $('#parteOncePreguntas').show();
         $("#idContador").empty();
-        $("#idContador").append('<p>Preguntas</p><p>10/12</p>');
+        $("#idContador").append('<p>Preguntas</p><p>10/11</p>');
         pb.value(10);
         var preguntasCheckeadas= $('.Integracion7').filter(':checked').length;
         if(preguntasCheckeadas>0)
@@ -479,6 +527,8 @@ head.ready(function () {
         $('#parteOncePreguntas').hide();      
         $("#idContador").empty();
         pb.value(9);
+        $("#idContador").append('<p>Preguntas</p><p>9/11</p>');
+        preguntaIntegracionContinua--;
     }); 
   //funcion  del Once  formulario  
     $('#btn_SiguienteOnce').click(function () {
@@ -505,7 +555,7 @@ head.ready(function () {
         $('#parteOncePreguntas').hide();
         $('#parteDocePreguntas').show();
         $("#idContador").empty();
-        $("#idContador").append('<p>Preguntas</p><p>11/12</p>');
+        $("#idContador").append('<p>Preguntas</p><p>11/11</p>');
         pb.value(11);
     });
     
@@ -514,6 +564,9 @@ head.ready(function () {
         $('#parteOncePreguntas').show();
         $('#parteDocePreguntas').hide();      
         $("#idContador").empty();
+        $("#idContador").empty();
+        $("#idContador").append('<p>Preguntas</p><p>10/11</p>');
+        preguntaIntegracionContinua--;
         pb.value(10);
     }); 
     
@@ -562,6 +615,9 @@ head.ready(function () {
         $('#parteAnalisis').hide();      
         $("#idContador").empty();
         pb.value(11);
+        totalModularidadPregunta=0;
+        totalNCCOMP=0;
+        totalNUCPCOM=0;
     }); 
     
     var pesoTotalModulos=0;
@@ -577,10 +633,25 @@ head.ready(function () {
             pesoTotalModulos+= m.peso;
             numeroTotalModulos++;
         }        
-        $('#btn_SiguienteDoce').show();      
+        $('#btn_SiguienteDoce').show();     
+        $('#btn_AtrasDetalle').show();
         $('#btn_ConfirmarModulos').hide();    
         $('#btn_Modulo').hide();   
-        
+        $('#btn_Atras10').hide(); 
+    }); 
+    
+    $('#btn_AtrasDetalle').click(function () {
+        for(let m of modulosIndividuales){
+            $('#btn_detalle'+m.id).prop('disabled', true);
+            $('#btn_Eliminar'+m.id).prop('disabled', false);          
+        }   
+        pesoTotalModulos=0;
+        numeroTotalModulos=0;
+        $('#btn_SiguienteDoce').hide();     
+        $('#btn_AtrasDetalle').hide();
+        $('#btn_ConfirmarModulos').show();    
+        $('#btn_Modulo').show();   
+        $('#btn_Atras10').show(); 
     }); 
     
     modulos= new Array<modularidad>();
@@ -595,8 +666,7 @@ head.ready(function () {
         // mostramos el otro formulario y ocultmaos este
         $('#parteAnalisis').show();
         $('#parteDocePreguntas').hide();
-        $("#idContador").empty();
-        $("#idContador").append('<p>Preguntas</p><p>12/12</p>');
+      
         pb.value(12);
         var totalPesos=0;
         var totalModularidadPregunta=0;
@@ -608,9 +678,9 @@ head.ready(function () {
             totalNUCPCOM+=m.nucpcom;
         }
         //saco el promedio por numero de modulos
-        totalModularidadPregunta=totalModularidadPregunta/contadorModulos;
-        totalNCCOMP=totalNCCOMP/contadorModulos;
-        totalNUCPCOM=totalNUCPCOM/contadorModulos;
+        totalModularidadPregunta=(totalModularidadPregunta*100)/contadorModulos;
+        totalNCCOMP=(totalNCCOMP*100)/contadorModulos;
+        totalNUCPCOM=(totalNUCPCOM*100)/contadorModulos;
         //agrego al factor modularidad
         valorPorcentualModularidad = totalModularidadPregunta;
         valorPorcentualFlexibilidad = totalModularidadPregunta;
@@ -713,12 +783,12 @@ head.ready(function () {
         }
         var factor7= new factor();
         var valor7=(valorPorcentualModularidad*7.6)/100;
-        factor7.nombre= 'Integración Continua';
+        factor7.nombre= 'Modularidad';
         factor7.valor= valor7;
         factorTodos.push(factor7);
         listadoValores.push(valor7);
         listadoValoresMinimos.push(0.106);//14%
-        listadoValoresNombres.push('Integración Continua');
+        listadoValoresNombres.push('Modularidad');
         
         //8)) valorPorcentualMantenibilidad   
         var mantenibilidad=false;       
@@ -754,13 +824,13 @@ head.ready(function () {
             flexibilidad=true;           
         }
         var factor10= new factor();
-        var valor10=(valorPorcentualReusabilidad*7.6)/100;
-        factor10.nombre= 'Reusabilidad';
+        var valor10=(valorPorcentualFlexibilidad*7.6)/100;
+        factor10.nombre= 'Flexibilidad';
         factor10.valor= valor10;
         factorTodos.push(factor10);
         listadoValores.push(valor10);
         listadoValoresMinimos.push(0.106);
-        listadoValoresNombres.push('Reusabilidad');
+        listadoValoresNombres.push('Flexibilidad');
         
         //11)) valorPorcentualInterOperabilidad   
         var interOperabilidad=false;       
@@ -769,12 +839,12 @@ head.ready(function () {
         }
         var factor11= new factor();
         var valor11=(valorPorcentualInterOperabilidad*7.6)/100;
-        factor11.nombre= 'Inter Operabilidad';
+        factor11.nombre= 'Interoperabilidad';
         factor11.valor= valor11;
         factorTodos.push(factor11);
         listadoValores.push(valor11);
         listadoValoresMinimos.push(0.106);
-        listadoValoresNombres.push('Inter Operabilidad');
+        listadoValoresNombres.push('Interoperabilidad');
         
         //12)) valorPorcentualChoesionAcoplamiento   
         var CohesionAcoplamiento=false;       
@@ -834,7 +904,7 @@ head.ready(function () {
          var InterOperabilidadCount=0;
          var ChoesionAcoplamientoCount=0;
          var PortabilidadCount=0;
-         
+         var IntegracionContinuaCount=0;
          
          if(escalabilidad){
              contadorSi++;
@@ -927,10 +997,15 @@ head.ready(function () {
          else
              contadorNo++;
          
-         
+         if(integracionContinua){
+             contadorSi++;
+             IntegracionContinuaCount+=1;   
+         }
+         else
+             contadorNo++;
          
          //con esto al final saco el promedio y veo el porcentaje de recomendacion
-         var porcentajeSI= contadorSi*100/13;
+         var porcentajeSI= contadorSi*100/14;
          
          var ResultadoRecomendacion='';
          if(porcentajeSI>50){
@@ -944,7 +1019,7 @@ head.ready(function () {
          '</h3> '+
          '<br/>'+
          '<blockquote class="blockquote" align="center">'+
-         '<p class="mb-0">El proyecto <b>'+nombreProyecto+'</b> fue analizado en base a sus factores técnicos y obtuvo un grado de recomendación del (<b>'+(porcentajeSI)+'/100)%</b>'+
+         '<p class="mb-0">El proyecto <b>'+nombreProyecto+'</b> fue analizado en base a sus factores técnicos y obtuvo un grado de recomendación del (<b>'+(Math.round(porcentajeSI))+'/100)%</b>'+
          ' por lo que '+ResultadoRecomendacion+'<p><br>'+
          '<footer class="blockquote-footer">Esta es una recomendación por parte del modelo de sugerencia de toma de desciciones es opción del usuario acogerse o no a la misma.</footer></blockquote>'                        
          );
@@ -963,12 +1038,53 @@ head.ready(function () {
                      '<tr><td>Mantenibilidad</td><td>'+(MantenibilidadCount==1?'SI':'NO')+'</td></tr>'+
                      '<tr><td>Reusabilidad </td><td>'+(ReusabilidadCount==1?'SI':'NO')+'</td></tr>'+
                      '<tr><td>Flexibilidad</td><td>'+(FlexibilidadCount==1?'SI':'NO')+'</td></tr>'+
-                     '<tr><td>Inter Operabilidad</td><td>'+(InterOperabilidadCount==1?'SI':'NO')+'</td></tr>'+
+                     '<tr><td>InterOperabilidad</td><td>'+(InterOperabilidadCount==1?'SI':'NO')+'</td></tr>'+
                      '<tr><td>Cohesión y Acoplamiento</td><td>'+(ChoesionAcoplamientoCount==1?'SI':'NO')+'</td></tr>'+
                      '<tr><td>Portabilidad</td><td>'+(PortabilidadCount==1?'SI':'NO')+'</td></tr>'+
+                     '<tr><td>Integracion Continua</td><td>'+(IntegracionContinuaCount==1?'SI':'NO')+'</td></tr>'+
                  '</tbody>'+
                 '</table>');
        
+         //guardamos en la base de datos
+         var  data = new DataPojo();
+         data.cohesionAcoplamiento=valor12;
+         data.cohesionAcoplamientoSi=ChoesionAcoplamientoCount==1?true:false;
+         data.computacionNube =valor14;
+         data.computacionNubeSi=ComputacionNubeCount==1?true:false;
+         data.disponibilidad =valor4;
+         data.disponibilidadSi=DsiponibilidadCount==1?true:false;
+         data.escalabilidadDinamica = valor1;
+         data.escalabilidadDinamicaSi=EscalabilidadDinamicaCount==1?true:false; 
+         data.fiabilidad=valor5;
+         data.fiabilidadSi=FiabilidadCount==1?true:false;
+         data.flexibilidad = valor10;
+         data.flexibilidadSi=FlexibilidadCount==1?true:false;
+         data.integracionContinua = valor6;
+         data.integracionContinuaSi=IntegracionContinuaCount==1?true:false;
+         data.interOperabilidad =valor11;
+         data.interOperabilidadSi=InterOperabilidadCount==1?true:false;
+         data.manejabilidad = valor2;
+         data.manejabilidadSi = ManejabilidadCount==1?true:false;
+         data.mantenibilidad = valor8;
+         data.mantenibilidadSi = MantenibilidadCount==1?true:false;
+         data.modularidad = valor7;
+         data.ModularidadSi= ModularidadCount==1?true:false;
+         data.porcentajeRecomendacion = (Math.round(porcentajeSI));
+         data.porcentajeRecomendacionSi =(porcentajeSI>50?true:false);
+         data.portabilidad =valor13;
+         data.portabilidadSi=PortabilidadCount==1?true:false;
+         data.recomendacionFinal = ResultadoRecomendacion
+         data.reusabilidad = valor9;
+         data.reusabilidadSi = ReusabilidadCount==1?true:false;
+         data.utilizacionRecursos = valor3;
+         data.utilizacionRecursosSi = UtilizacionRecursosCount==1?true:false;
+         data.idProyecto=idUsuario;
+         post$Usuario$GuardarDatos(data, function (result: Msg) {            
+             
+         }, function (error: Msg) {
+           
+         });
+         
          //chart lineal global    
          $("#chart-mmHg").kendoChart({
              title: {
@@ -1067,8 +1183,8 @@ head.ready(function () {
                  data: [ReusabilidadCount],
                  color: "#0d47a1"
              }, {
-                 name: "Flexibilidad",
-                 data: [FlexibilidadCount],
+                 name: "Manejabilidad",
+                 data: [ManejabilidadCount],
                  color: "#0d47a1"
              }, {
                  name: "Inter Operatibiblidad",
@@ -1086,7 +1202,7 @@ head.ready(function () {
              
              ],
              valueAxis: {
-                 max: 13,
+                 max: 14,
                  line: {
                      visible: false
                  },
@@ -1095,7 +1211,7 @@ head.ready(function () {
                  }
              },
              categoryAxis: {
-                 categories: ['Factores'],
+                 categories: ['Factores Determinantes'],
                  majorGridLines: {
                      visible: false
                  }
@@ -1111,36 +1227,36 @@ head.ready(function () {
          
          
          //este es el chart de estrella
-//         $("#chart").kendoChart({
-//             title: {
-//                 text: "Recomendación por factor"
-//             },
-//             legend: {
-//                 position: "bottom"
-//             },
-//             seriesDefaults: {
-//                 type: "radarLine"
-//             },
-//             series: [{
-//                 name: "Porcentaje de recomendación por Factor",
-//                 data: listadoValores
-//             },{
-//                 name: "Valor mínimo recomendable",
-//                 data: listadoValoresMinimos
-//             }],
-//             categoryAxis: {
-//                 categories: listadoValoresNombres
-//             },
-//             valueAxis: {
-//                labels: {
-//                     format: "{0} %"
-//                }
-//             },
-//             tooltip: {
-//                 visible: true,
-//                 format: "{0} %"
-//             }
-//         });
+        $("#chart2").kendoChart({
+             title: {
+                 text: "Recomendación por factor"
+             },
+             legend: {
+                 position: "bottom"
+             },
+             seriesDefaults: {
+                 type: "radarLine"
+             },
+             series: [{
+                 name: "Porcentaje de recomendación por Factor",
+                 data: listadoValores
+             },{
+                 name: "Valor mínimo recomendable",
+                 data: listadoValoresMinimos
+             }],
+             categoryAxis: {
+                categories: listadoValoresNombres
+             },
+             valueAxis: {
+                labels: {
+                     format: "{0} %"
+                }
+             },
+             tooltip: {
+                 visible: true,
+                 format: "{0} %"
+             }
+         });
          
          //aqui le vamos a poner el chart de barras                
          /*$("#chartBarras").kendoChart({
@@ -1264,31 +1380,31 @@ head.ready(function () {
         }      
         
         //validaciones de valores 
-        if($("#inCBN").val()>=numeroTotalModulos)
+        if($("#inCBN").val()>numeroTotalModulos)
             return alert('CBN no puede tener un valor mayor al total de modulos  '+numeroTotalModulos);
         
-        if($("#inCBCOM").val()>=numeroTotalModulos)
+        if($("#inCBCOM").val()>numeroTotalModulos)
             return alert('CBCOM no puede tener un valor mayor al total de modulos  '+numeroTotalModulos);
         
-        if($("#inAC").val()>=numeroTotalModulos)
+        if($("#inAC").val()>numeroTotalModulos)
             return alert('AC no puede tener un valor mayor al total de modulos  '+numeroTotalModulos);
         
-        if($("#inEC").val()>=numeroTotalModulos)
+        if($("#inEC").val()>numeroTotalModulos)
             return alert('EC no puede tener un valor mayor al total de modulos  '+numeroTotalModulos);
         
-        if($("#inNUCPCOM").val()>=numeroTotalModulos)
+        if($("#inNUCPCOM").val()>numeroTotalModulos)
             return alert('NUCPCOM no puede tener un valor mayor al total de modulos  '+numeroTotalModulos);
         
-        if($("#inNumCycles").val()>=numeroTotalModulos)
+        if($("#inNumCycles").val()>numeroTotalModulos)
             return alert('NumCycles no puede tener un valor mayor al total de modulos  '+numeroTotalModulos);
         
-        if($("#inInDepned").val()>=numeroTotalModulos)
+        if($("#inInDepned").val()>numeroTotalModulos)
             return alert('InDepned no puede tener un valor mayor al total de modulos  '+numeroTotalModulos);
         
-        if($("#inNCOMPUC").val()>=numeroTotalModulos)
+        if($("#inNCOMPUC").val()>numeroTotalModulos)
             return alert('NCOMPUC no puede tener un valor mayor al total de modulos  '+numeroTotalModulos);
         
-        if($("#inNCPCOM").val()>=numeroTotalModulos)
+        if($("#inNCPCOM").val()>numeroTotalModulos)
             return alert('NCPCOM no puede tener un valor mayor al total de modulos  '+numeroTotalModulos);
         
         //agrego los detalles al objeto especifivo por id
@@ -1297,15 +1413,15 @@ head.ready(function () {
                 //agrego los detalles al modulo
                 //por cada facroe de modulo  aplicamos la formula
                 //val= valorIngresado-valorMinimo/ valorMaximo-valorIngresado;
-                var CBNCalculo=(Number($("#inCBN").val())-0) /  (numeroTotalModulos-(Number($("#inCBN").val())));
-                var CBCOMCalculo=(Number($("#inCBCOM").val())-0) /  (numeroTotalModulos-(Number($("#inCBN").val())));
-                var ACCalculo=(Number($("#inAC").val())-0) /  (numeroTotalModulos-(Number($("#inCBN").val())));
-                var ECCalculo=(Number($("#inEC").val())-0) / ( numeroTotalModulos-(Number($("#inCBN").val())));
-                var NUCPCOMCalculo=(Number($("#inNUCPCOM").val())-0) /  (numeroTotalModulos-(Number($("#inCBN").val())));
-                var NumCyclesCalculo=(Number($("#inNumCycles").val())-0) / ( numeroTotalModulos-(Number($("#inCBN").val())));
-                var InDepnedCalculo=(Number($("#inInDepned").val())-0) /  (numeroTotalModulos-(Number($("#inCBN").val())));
-                var NCOMPUCCalculo=(Number($("#inNCOMPUC").val())-0) / ( numeroTotalModulos-(Number($("#inCBN").val())));
-                var NCPCOMCalculo=(Number($("#inNCPCOM").val())-0) /  (numeroTotalModulos-(Number($("#inCBN").val())));
+                var CBNCalculo=(Number($("#inCBN").val())-0)  /  (numeroTotalModulos-0);
+                var CBCOMCalculo=(Number($("#inCBCOM").val())-0) /  (numeroTotalModulos-0);
+                var ACCalculo=(Number($("#inAC").val())-0) /  (numeroTotalModulos-0);
+                var ECCalculo=(Number($("#inEC").val())-0) /  (numeroTotalModulos-0);
+                var NUCPCOMCalculo=(Number($("#inNUCPCOM").val())-0)  /  (numeroTotalModulos-0);
+                var NumCyclesCalculo=(Number($("#inNumCycles").val())-0)  /  (numeroTotalModulos-0);
+                var InDepnedCalculo=(Number($("#inInDepned").val())-0)  /  (numeroTotalModulos-0);
+                var NCOMPUCCalculo=(Number($("#inNCOMPUC").val())-0)  /  (numeroTotalModulos-0);
+                var NCPCOMCalculo=(Number($("#inNCPCOM").val())-0) /  (numeroTotalModulos-0);
                 // ahora calculamos el valor de la modularidad en base a la formula
                 //modularidad= NUCPCOM * 0.1 + ( 1 - CBCOM )*0.1 + (1-AC)*0.1 + (1-EC)*0.15 + (1- NumCycles)*0.3 + (1-InDepned)*0.25 + (1-NCPCOM)*0.25;
                 var modularidadCompleta = (NUCPCOMCalculo*0.1)+((1-CBCOMCalculo)*0.1)+((1-ACCalculo)*0.1)+((1-ECCalculo)*0.15)+((1-NumCyclesCalculo)*0.3)+((1-InDepnedCalculo)*0.25)+((1-NCPCOMCalculo)*0.25);
@@ -1346,7 +1462,7 @@ head.ready(function () {
     });
     //exportar chart segundo    
     $("#descargaSegunda").click(function() {
-        $("#chart").getKendoChart().saveAsPDF();
+        $("#chart2").getKendoChart().saveAsPDF();
     });
     //exportar chart tercero    
     $("#descargaTercera").click(function() {
@@ -1384,7 +1500,7 @@ head.ready(function () {
     
     function eliminarColumna(id:number){
         $('#c_'+id+'').remove();  
-        modulos = modulos.filter(function(item) {
+        modulosIndividuales = modulosIndividuales.filter(function(item) {
             return item.id !== id
         });
     }
@@ -1400,7 +1516,26 @@ head.ready(function () {
             }).data("kendoWindow").center().open();        
     }
     
-    editar=editarModulo;
+    editar=editarModulo;    
+    function llamarVentanaOpcionesMenu(){
+        $("#ventanaOpcionesMenu").kendoWindow({
+        width: "400px",
+        height: "80px",
+        title: "Información",
+        modal: true
+        }).data("kendoWindow").center().open();        
+    }
+    llamarVentanaOpcionesMenuGeneral=llamarVentanaOpcionesMenu;
+    
+    function  llamarVentanaContactos(){
+        $("#ventanaContactos").kendoWindow({
+        width: "400px",
+        height: "200px",
+        title: "Contactos",
+        modal: true
+        }).data("kendoWindow").center().open();        
+    }
+    llamarVentanaContactosGeneral= llamarVentanaContactos;
     
     Loading_Hide();
 });

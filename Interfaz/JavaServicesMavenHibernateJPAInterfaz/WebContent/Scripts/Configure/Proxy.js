@@ -32,3 +32,6 @@ function get$RegistroDatos$ProcesarArquitectura(idProyecto, callDone, callFail) 
 function get$RegistroDatos$leerCalificacionArquitectura(idProyecto, callDone, callFail) {
     Callback(serviceMain, null, { "idProyecto": idProyecto }, arguments, callDone, callFail);
 }
+function post$Usuario$GuardarDatos(data, callDone, callFail) {
+    Callback(serviceMain, JSON.stringify(data), null, arguments, callDone, callFail);
+}

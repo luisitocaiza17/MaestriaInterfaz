@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title>SSAM ESPE</title>
+	<title>DMTF ESPE</title>
 	<!-- start: META -->
     <meta charset="utf-8" />
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content="IE=edge,IE=9,IE=8,chrome=1" /><![endif]-->
@@ -19,41 +19,32 @@
 			align-items: center;
 			justify-content: center;
 			vertical-align:middle;
-		}		
+		}	
+			
 	</style>
 </head>
 
 <body>
 	<div id="carga">
 		<div class="alignCenterTop" id="alignCenterTop">
-			<h3>SSAM
-				<small class="text-muted">Sistema de Sugerencias de Arquitectura de Micro-servicios</small>
+			<img src="../Images/espelogo.png" width="250" height="100">
+			<h3>&nbsp;&nbsp;&nbsp; DMTF
+				<small class="text-muted">Modelo de decisión por Factores Técnicos</small>
 			</h3>
+			
 		</div>
+		
 	</div>
 	<div id="principal" style="display: none;">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="bg-light">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#">SSAM</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-				<ul class="navbar-nav">
-					<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						Información
-					</a>
-					<ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-						<li><a class="dropdown-item btnInfProyecto" href="#" onclick="javascript:llamarVentanaInformacionGeneral();">El proyecto</a></li>
-						<li><a class="dropdown-item" href="#" onclick="javascript:llamarVentanaEquipoGeneral();" >Nuestro Equipo</a></li>
-						<li><a class="dropdown-item" href="#">Contactanos</a></li>
-					</ul>
-					</li>
-				</ul>
-				</div>
+				<img src="../Images/logoEspe.png" width="60" height="60">
+				<label><b>&nbsp;&nbsp;DMTF&nbsp;&nbsp;</b></label>
+				<a href="#" onclick="javascript:llamarVentanaOpcionesMenuGeneral();" role="button">
+						INFORMACIÓN
+				</a>				
 			</div>
-		</nav>
+		</div>
 
 		<div class="container" id="parteInicial">
 			<div class="row">
@@ -61,7 +52,7 @@
 				<div class="col-6">
 				<br/>
 				<br/>
-				<h3 style="text-align: center;">Sistema de Sugerencias de Arquitectura de Micro-servicios (SSAM)</h3>
+				<h3 style="text-align: center;">Modelo de decisión por Factores Técnicos (DMTF)</h3>
 				<br/>
 				<p>El sistema validará que tan recomendable es usar la arquitectura de micro-servicios
 					en base al analisís de factores técnicos evaluados a travez de un conjunto de partePreguntas
@@ -177,8 +168,8 @@
 						<tbody>
 							<tr><td>1</td><td>Plataforma</td><td title="Número de mensajes reenviados a un punto final (end point) determinado">TC = Conteo Total</td><td><input type="number" class="form-control"  id="lineaTC"></td></tr>
 							<tr><td>2</td><td>Plataforma</td><td title="Número de mensajes que resultaron en un error mientras se reenviaban al punto final (end point)">FC = Conteo de Fallos</td><td><input type="number" class="form-control"  id="lineaFC"></td></tr>
-							<tr><td>3</td><td>Plataforma</td><td title="El tiempo mínimo que se tarda en enviar una solicitud al punto final (end point) y recibir una respuesta">MinT = Tiempo Mínimo(milisegundos)</td><td><input type="number" class="form-control"  id="TiempoMin"></td></tr>
-							<tr><td>4</td><td>Plataforma</td><td title="El tiempo máximo que se tarda en enviar una solicitud al punto final (end point) y recibir una respuesta">MaxT = Tiempo Máximo(milisegundos)</td><td><input type="number" class="form-control"  id="TiempoMax"></td></tr>
+							<tr><td>3</td><td>Plataforma</td><td title="El tiempo máximo que se tarda en enviar una solicitud al punto final (end point) y recibir una respuesta">MaxT = Tiempo Máximo(milisegundos)</td><td><input type="number" class="form-control"  id="TiempoMax"></td></tr>
+							<tr><td>4</td><td>Plataforma</td><td title="El tiempo mínimo que se tarda en enviar una solicitud al punto final (end point) y recibir una respuesta">MinT = Tiempo Mínimo(milisegundos)</td><td><input type="number" class="form-control"  id="TiempoMin"></td></tr>
 							<tr><td>5</td><td>Plataforma</td><td title="El tiempo promedio que se tarda en enviar una solicitud al punto final (end point) y recibir una respuesta">AveT = Tiempo Promedio(milisegundos)</td><td><input type="number" class="form-control"  id="TiempoPromedio"></td></tr>
 							<tr><td>6</td><td>Host</td><td title="Utilización de la CPU en sistemas host e invitados.">CL = Carga de CPU (valor _%/100)</td><td><input type="number" class="form-control"  id="lineaCL"></td></tr>
 							<tr><td>7</td><td>Host</td><td title="Utilización de Memoria en sistemas host e invitados. ">MO = Ocupación de Memoria(valor _%/100)</td><td><input type="number" class="form-control"  id="lineaMO"></td></tr>
@@ -389,7 +380,7 @@
 					<br/>
 					&nbsp;
 					<div class="alert alert-primary" role="alert">
-						<p>7.	En el uso profesional de las herramientas de integración continua, ¿cuáles son los principales obstáculos y dificultades?</p>
+						<p>8.	En el uso profesional de las herramientas de integración continua, ¿cuáles son los principales obstáculos y dificultades?</p>
 						</br>
 						<table class="table">
 						<thead>
@@ -445,7 +436,7 @@
 					<br/>
 					&nbsp;
 					<div class="alert alert-primary" role="alert">
-						<p>8.	¿Qué características y facilidades valorarías más en una hipotética herramienta de integración continua?</p>
+						<p>9.	¿Qué características y facilidades valorarías más en una hipotética herramienta de integración continua?</p>
 						</br>
 						<table class="table">
 						<thead>
@@ -491,7 +482,7 @@
 					<br/>
 					&nbsp;
 					<div class="alert alert-primary" role="alert">
-						<p>9.	¿Qué aspectos y funcionalidades valoras más en las herramientas de integración continua que ya has utilizado? </p>
+						<p>10.	¿Qué aspectos y funcionalidades valoras más en las herramientas de integración continua que ya has utilizado? </p>
 						</br>
 						<table class="table">
 						<thead>
@@ -535,11 +526,11 @@
 		<!-- Doce Pregunta -->
 		<div class="container" id="parteDocePreguntas" style="display: none;">
 			<div class="row">
-				<div class="col-2"></div>
-				<div class="col-8">
+				<div class="col-4"></div>
+				<div class="col-4">
 					<br/>
 					<br/>
-					<p align="center"> A continuación se presentarán un conjunto de preguntas
+					<p align="center">11. A continuación se presentarán un conjunto de preguntas
 						que ayudará a determinar el grado de sugerencia de la aplicación sobre el uso de la 
 						arquitectura de micro-servicios.
 					</p>
@@ -566,10 +557,10 @@
 					<br/>
 					<br/>
 					<div style="text-align:right">
-						<button type="button" id="btn_Atras10" class="btn btn-light">Regresar</button><button type="button" id="btn_ConfirmarModulos" class="btn btn-primary">Confirmar Modulos</button><button type="button" style="display:none;" id="btn_SiguienteDoce" class="btn btn-primary">Continuar</button>
+						<button type="button" id="btn_Atras10"  class="btn btn-light">Regresar</button><button type="button" style="display:none;" id="btn_AtrasDetalle" class="btn btn-light">Regresar</button><button type="button" id="btn_ConfirmarModulos" class="btn btn-primary">Confirmar Modulos</button><button type="button" style="display:none;" id="btn_SiguienteDoce" class="btn btn-primary">Continuar</button>
 					</div>					
 				</div>
-				<div class="col-2"></div>
+				<div class="col-4"></div>
 			</div>
 		</div>
 		
@@ -601,6 +592,9 @@
 				<div class="col-6">
 					<button class='k-button' id="descargaSegunda">Descargar como PDF</button>
 					<div id="chart"></div>
+					<br/>&nbsp;
+					<button class='k-button' id="descargaSegunda2">Descargar como PDF</button>
+					<div id="chart2"></div>
 				</div>
 				<div class="col-6">
 					<div id="resumenFactor"></div>				
@@ -805,13 +799,31 @@
 				</div>
 			</div>
 		</div>
-		
+		<!--Ventana de Agregar modulos-->
+		 <div id="ventanaOpcionesMenu" style="display:none;">    
+		 	<div class="row">
+				<div class="col-12">
+					<button type="button" onclick="javascript:llamarVentanaInformacionGeneral();" class="btn btn-primary">El proyecto</button>	
+					<button type="button" onclick="javascript:llamarVentanaEquipoGeneral();" class="btn btn-primary">Nuestro Equipo</button>	
+					<button type="button"  onclick="javascript:llamarVentanaContactosGeneral();" class="btn btn-primary">CONTACTOS</button>			
+				</div>
+			</div>
+		</div>
+		<!--Ventana de Contactos-->
+		 <div id="ventanaContactos" style="display:none;">        
+			<h3>Contactos</h3>
+			<br />
+			<br />
+			<p class="justificado"><b>luis Caiza</b> luisito_caiza17@hotmail.com</p>
+			<p class="justificado"><b>Gustavo Guaygua</b> hgguaigua@espe.edu.ec</p>
+			<br />
+        </div>
 		
 		<footer class="bg-light text-center text-lg-start">
 		<!-- Copyright -->
 		<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
 			© 2020 Copyright:
-			<a class="text-dark" href="https://mdbootstrap.com/">SSAM ESPE</a>
+			<a class="text-dark" href="https://mdbootstrap.com/">DMTF Modelo de decisión por Factores Técnicos</a>
 		</div>
 		<!-- Copyright -->
 		</footer>

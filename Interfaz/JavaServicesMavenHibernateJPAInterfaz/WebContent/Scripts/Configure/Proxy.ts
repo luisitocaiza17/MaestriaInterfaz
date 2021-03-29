@@ -39,3 +39,7 @@ function get$RegistroDatos$ProcesarArquitectura(idProyecto:number,callDone, call
 function get$RegistroDatos$leerCalificacionArquitectura(idProyecto:number,callDone, callFail) {
     Callback(serviceMain, null, { "idProyecto": idProyecto}, arguments, callDone, callFail);
 }
+
+function post$Usuario$GuardarDatos(data: DataPojo, callDone, callFail) {
+    Callback(serviceMain, JSON.stringify(data), null, arguments, callDone, callFail);
+}

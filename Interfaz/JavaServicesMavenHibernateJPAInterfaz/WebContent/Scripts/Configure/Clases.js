@@ -61,3 +61,8 @@ var factorDetalle = /** @class */ (function () {
     }
     return factorDetalle;
 }());
+var DataPojo = /** @class */ (function () {
+    function DataPojo() {
+    }
+    return DataPojo;
+}());

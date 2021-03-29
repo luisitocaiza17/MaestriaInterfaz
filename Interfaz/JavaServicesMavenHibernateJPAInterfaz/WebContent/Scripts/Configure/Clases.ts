@@ -110,3 +110,38 @@ class factorDetalle{
     public ncpcom:number;
     public modularidad:number;
 }
+
+class DataPojo{
+    public  idProyecto:number;
+    public  escalabilidadDinamica:number;
+    public  manejabilidad:number;
+    public  utilizacionRecursos:number;
+    public  disponibilidad:number;
+    public  fiabilidad:number;
+    public  integracionContinua:number;
+    public  modularidad:number;
+    public  mantenibilidad:number;
+    public  reusabilidad:number;
+    public  flexibilidad:number;
+    public  interOperabilidad:number;
+    public  cohesionAcoplamiento:number;
+    public  portabilidad:number;
+    public  computacionNube:number;
+    public  porcentajeRecomendacion:number;
+    public  recomendacionFinal:string;
+    public  escalabilidadDinamicaSI:boolean;
+    public  manejabilidadSi:boolean;
+    public  utilizacionRecursosSi:boolean;
+    public  disponibilidadSi:boolean;
+    public  fiabilidadSi:boolean;
+    public  integracionContinuaSi:boolean;
+    public  mantenibilidadSi:boolean;
+    public  reusabilidadSi:boolean;
+    public  flexibilidadSi:boolean;
+    public  interOperabilidadSi:boolean;
+    public  cohesionAcoplamientoSi:boolean;
+    public  portabilidadSi:boolean;
+    public  computacionNubeSi:boolean;
+    public  porcentajeRecomendacionSi:boolean;
+    public  ModularidadSi:boolean;
+}
