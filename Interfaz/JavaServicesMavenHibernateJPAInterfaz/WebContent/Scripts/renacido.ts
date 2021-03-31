@@ -127,28 +127,28 @@ head.ready(function () {
         if(valor=='ninguno'){
             valorPorcentualEscalabilidadDinamica=0;
             valorPorcentualManejabilidad =0;
-            valorPorcentualUtilizacionRecursos=0;
+            //valorPorcentualUtilizacionRecursos=0;
             valorPorcentualDsiponibilidad=0;
             valorPorcentualFiabilidad=0;
         }
         if(valor=='SPP'){
             valorPorcentualEscalabilidadDinamica=66;        
             valorPorcentualManejabilidad=100;
-            valorPorcentualUtilizacionRecursos=33;
+            //valorPorcentualUtilizacionRecursos=33;
             valorPorcentualDsiponibilidad=66;
             valorPorcentualFiabilidad=66;
         }
         if(valor=='SHPP'){
             valorPorcentualEscalabilidadDinamica=33;      
             valorPorcentualManejabilidad=66;
-            valorPorcentualUtilizacionRecursos=66;
+           // valorPorcentualUtilizacionRecursos=66;
             valorPorcentualDsiponibilidad=33;
             valorPorcentualFiabilidad=33;
         }
         if(valor=='CPP'){
             valorPorcentualEscalabilidadDinamica=100;  
             valorPorcentualManejabilidad=66;
-            valorPorcentualUtilizacionRecursos=66;
+            //valorPorcentualUtilizacionRecursos=66;
             valorPorcentualDsiponibilidad=100;
             valorPorcentualFiabilidad=100;
         }
@@ -162,7 +162,7 @@ head.ready(function () {
         if(valor=='MCPP'){
             valorPorcentualEscalabilidadDinamica=100;   
             valorPorcentualManejabilidad=33;
-            valorPorcentualUtilizacionRecursos=100;
+            //valorPorcentualUtilizacionRecursos=100;
             valorPorcentualDsiponibilidad=100;
             valorPorcentualFiabilidad=100;
         }
@@ -330,14 +330,14 @@ head.ready(function () {
                 //sumamos los factores ppara sumar las metricas y promedio
                 valorPorcentualEscalabilidadDinamica+=contadorPorcentajes;   
                 valorPorcentualManejabilidad+=contadorPorcentajes; 
-                valorPorcentualUtilizacionRecursos+=contadorPorcentajes; 
+                //valorPorcentualUtilizacionRecursos+=contadorPorcentajes; 
                 valorPorcentualDsiponibilidad+=contadorPorcentajes; 
                 valorPorcentualFiabilidad+=contadorPorcentajes; 
                 
                 //aqui tenemos el 50% de la primera pregunta
                 valorPorcentualEscalabilidadDinamica=valorPorcentualEscalabilidadDinamica/2; 
                 valorPorcentualManejabilidad=valorPorcentualManejabilidad/2;
-                valorPorcentualUtilizacionRecursos=valorPorcentualUtilizacionRecursos/2;
+                //valorPorcentualUtilizacionRecursos=valorPorcentualUtilizacionRecursos/2;
                 valorPorcentualDsiponibilidad=valorPorcentualDsiponibilidad/2;
                 valorPorcentualFiabilidad=valorPorcentualFiabilidad/2;
                 
@@ -362,7 +362,7 @@ head.ready(function () {
             preguntaIntegracionContinua=0;
             valorPorcentualEscalabilidadDinamica-=contadorPorcentajes;   
             valorPorcentualManejabilidad-=contadorPorcentajes; 
-            valorPorcentualUtilizacionRecursos-=contadorPorcentajes; 
+           // valorPorcentualUtilizacionRecursos-=contadorPorcentajes; 
             valorPorcentualDsiponibilidad-=contadorPorcentajes; 
             valorPorcentualFiabilidad-=contadorPorcentajes; 
         });   
@@ -688,6 +688,7 @@ head.ready(function () {
         valorPorcentualMantenibilidad=totalNCCOMP;
         valorPorcentualReusabilidad=totalNCCOMP;
         valorPorcentualChoesionAcoplamiento=totalNUCPCOM;
+        valorPorcentualUtilizacionRecursos=totalNUCPCOM;
         valorPorcentualPortabilidad=totalNUCPCOM;
         valorPorcentualComputacionNube=valorPorcentualEscalabilidadDinamica;
         
@@ -720,19 +721,19 @@ head.ready(function () {
         listadoValoresMinimos.push(3.8);
         listadoValoresNombres.push('Manejabilidad');
        
-        //3)) valorPorcentualUtilizacionRecursos   
+        //3)) esto se cambia por cohesion ya que este factor no se va tomar en cuenta    
         var utilizacionRecursos=false;       
         if(valorPorcentualUtilizacionRecursos>50){
             utilizacionRecursos=true;           
         }
         var factor3= new factor();
         var valor3=(valorPorcentualUtilizacionRecursos*7.6)/100;
-        factor3.nombre= 'Utilizacion de Recursos';
+        factor3.nombre= 'Cohesión';
         factor3.valor= valor3;
         factorTodos.push(factor3);
         listadoValores.push(valor3);
         listadoValoresMinimos.push(3.8);
-        listadoValoresNombres.push('Utilizacion de Recursos');
+        listadoValoresNombres.push('Cohesión');
      
         //4)) valorPorcentualDsiponibilidad   
         var disponibilidad=false;       
@@ -853,12 +854,12 @@ head.ready(function () {
         }
         var factor12= new factor();
         var valor12=(valorPorcentualChoesionAcoplamiento*7.6)/100;
-        factor12.nombre= 'Cohesión y Acoplamiento';
+        factor12.nombre= 'Acoplamiento';
         factor12.valor= valor12;
         factorTodos.push(factor12);
         listadoValores.push(valor12);
         listadoValoresMinimos.push(3.8);
-        listadoValoresNombres.push('Cohesión y Acoplamiento');
+        listadoValoresNombres.push('Acoplamiento');
         
         //13)) valorPorcentualPortabilidad   
         var portabilidad=false;       
@@ -1030,7 +1031,7 @@ head.ready(function () {
                  '<tbody>'+
                      '<tr><td>Escalabilidad Dinámica</td><td>'+(EscalabilidadDinamicaCount==1?'SI':'NO')+'</td></tr>'+
                      '<tr><td>Manejabilidad</td><td>'+(ManejabilidadCount==1?'SI':'NO')+'</td></tr>'+
-                     '<tr><td>Utilización de recursos</td><td>'+(UtilizacionRecursosCount==1?'SI':'NO')+'</td></tr>'+
+                     '<tr><td>Cohesión</td><td>'+(UtilizacionRecursosCount==1?'SI':'NO')+'</td></tr>'+
                      '<tr><td>Disponibilidad</td><td>'+(DsiponibilidadCount==1?'SI':'NO')+'</td></tr>'+
                      '<tr><td>Fiabilidad</td><td>'+(FiabilidadCount==1?'SI':'NO')+'</td></tr>'+
                      '<tr><td>Computación en la nube</td><td>'+(ComputacionNubeCount==1?'SI':'NO')+'</td></tr>'+
@@ -1039,7 +1040,7 @@ head.ready(function () {
                      '<tr><td>Reusabilidad </td><td>'+(ReusabilidadCount==1?'SI':'NO')+'</td></tr>'+
                      '<tr><td>Flexibilidad</td><td>'+(FlexibilidadCount==1?'SI':'NO')+'</td></tr>'+
                      '<tr><td>InterOperabilidad</td><td>'+(InterOperabilidadCount==1?'SI':'NO')+'</td></tr>'+
-                     '<tr><td>Cohesión y Acoplamiento</td><td>'+(ChoesionAcoplamientoCount==1?'SI':'NO')+'</td></tr>'+
+                     '<tr><td>Acoplamiento</td><td>'+(ChoesionAcoplamientoCount==1?'SI':'NO')+'</td></tr>'+
                      '<tr><td>Portabilidad</td><td>'+(PortabilidadCount==1?'SI':'NO')+'</td></tr>'+
                      '<tr><td>Integracion Continua</td><td>'+(IntegracionContinuaCount==1?'SI':'NO')+'</td></tr>'+
                  '</tbody>'+
@@ -1151,7 +1152,7 @@ head.ready(function () {
                  data: [ManejabilidadCount],
                  color: "#b39ddb"
              }, {
-                 name: "Utilización de recursos",
+                 name: "Cohesión",
                  data: [UtilizacionRecursosCount],
                  color: "#9575cd"
              }, {
@@ -1191,7 +1192,7 @@ head.ready(function () {
                  data: [InterOperabilidadCount],
                  color: "#0d47a1"
              }, {
-                 name: "Cohesión y Acoplamiento",
+                 name: "Acoplamiento",
                  data: [ChoesionAcoplamientoCount],
                  color: "#0d47a1"
              }, {
